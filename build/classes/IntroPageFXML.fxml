@@ -11,18 +11,18 @@
    <children>
       <VBox alignment="CENTER" layoutX="153.0" layoutY="48.0" prefHeight="503.0" prefWidth="694.0" spacing="25.0">
          <children>
-            <ImageView fitHeight="207.0" fitWidth="582.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="312.0" fitWidth="659.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@image/Logo.png" />
                </image></ImageView>
-            <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="246.0" style="-fx-background-color: #00C897;" text="Registration" textFill="WHITE">
+            <Button fx:id="registrationBtn" mnemonicParsing="false" onAction="#registrationBtnAction" prefHeight="52.0" prefWidth="246.0" style="-fx-background-color: #39b54a;" text="Registration" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="246.0" style="-fx-background-color: #00C897;" text="Admin Log In" textFill="WHITE">
+            <Button fx:id="adminLogInBtn" mnemonicParsing="false" onAction="#adminLogInBtnAction" prefHeight="52.0" prefWidth="246.0" style="-fx-background-color: #00C897;" text="Admin Log In" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Button>
          </children>
