@@ -17,8 +17,7 @@ public class MainClass extends  Application{
         
         Scene introScene = new Scene(root);
         stage.setScene(introScene);
-        stage.show();
-        
+        stage.show();       
         
     }
     
