@@ -16,46 +16,46 @@
    <children>
       <VBox layoutX="510.0" layoutY="62.0" prefHeight="492.0" prefWidth="406.0" spacing="12.0" style="-fx-background-color: #39b54a;">
          <children>
-            <Label graphicTextGap="10.0" text="Admin Log In" textFill="WHITE">
+            <Label fx:id="AdminLogInLabel" graphicTextGap="10.0" text="Admin Log In" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="33.0" />
                </font>
             </Label>
-            <Label alignment="TOP_LEFT" graphicTextGap="10.0" lineSpacing="10.0" text="User Name " textFill="WHITE">
+            <Label fx:id="UserNameLabel" alignment="TOP_LEFT" graphicTextGap="10.0" lineSpacing="10.0" text="User Name " textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField promptText="Enter User Name">
+            <TextField fx:id="UserNameTF" promptText="Enter User Name">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </TextField>
-            <Label graphicTextGap="20.0" text="Password" textFill="WHITE">
+            <Label fx:id="PasswordLabel" graphicTextGap="20.0" text="Password" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <PasswordField promptText="Enter Your password">
+            <PasswordField fx:id="PasswordTF" promptText="Enter Your password">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font></PasswordField>
-            <Button mnemonicParsing="false" text="Send OTP">
+            <Button fx:id="OTPButton" mnemonicParsing="false" onAction="#AdminLogInOTPAction" text="Send OTP">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font></Button>
-            <Label text="Enter OTP" textFill="WHITE">
+            <Label fx:id="AdminLogInlOTP" text="Enter OTP" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField promptText="Enter OTP">
+            <TextField fx:id="OTPTF" promptText="Enter OTP">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font></TextField>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" text="Log In">
+                  <Button fx:id="LogInButton" mnemonicParsing="false" onAction="#AdminLogInAction" text="Log In">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -63,7 +63,7 @@
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="Back">
+                  <Button fx:id="BackButton" mnemonicParsing="false" onAction="#AdminLogInBackAction" prefHeight="25.0" prefWidth="83.0" text="Back">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
