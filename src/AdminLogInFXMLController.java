@@ -1,15 +1,55 @@
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
+public class AdminLogInFXMLController {
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+    @FXML
+    private Label AdminLogInLabel;
 
+    @FXML
+    private Label AdminLogInlOTP;
 
-public class AdminLogInFXMLController implements Initializable {
+    @FXML
+    private Button BackButton;
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+    @FXML
+    private Button LogInButton;
+
+    @FXML
+    private Button OTPButton;
+
+    @FXML
+    private TextField OTPTF;
+
+    @FXML
+    private Label PasswordLabel;
+
+    @FXML
+    private PasswordField PasswordTF;
+
+    @FXML
+    private Label UserNameLabel;
+
+    @FXML
+    private TextField UserNameTF;
+
+    @FXML
+    void AdminLogInAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void AdminLogInBackAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void AdminLogInOTPAction(ActionEvent event) {
+
+    }
+
 }
