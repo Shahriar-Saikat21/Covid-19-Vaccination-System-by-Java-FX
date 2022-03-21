@@ -3,9 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/E:/UiU%20doc/Semister-4/AOOP/Main%20Project/Covid-19-Vaccination-System-by-Java-FX/src/MainClass.java</file>
             <file>file:/E:/UiU%20doc/Semister-4/AOOP/Main%20Project/Covid-19-Vaccination-System-by-Java-FX/src/AdminPanelFxmlController.java</file>
             <file>file:/E:/UiU%20doc/Semister-4/AOOP/Main%20Project/Covid-19-Vaccination-System-by-Java-FX/src/AdminPanelFxml.fxml</file>
+=======
+            <file>file:/E:/UIU/4th%20semester/Aoop%20project/Covid-19-Vaccination-System-by-Java-FX/src/AdminLogInFXML.fxml</file>
+            <file>file:/E:/UIU/4th%20semester/Aoop%20project/Covid-19-Vaccination-System-by-Java-FX/src/MainClass.java</file>
+            <file>file:/E:/UIU/4th%20semester/Aoop%20project/Covid-19-Vaccination-System-by-Java-FX/src/AdminLogInFXMLController.java</file>
+>>>>>>> 4d5f6c25173b3f28fc9461b88216b99a4fb7674b
         </group>
     </open-files>
 </project-private>
