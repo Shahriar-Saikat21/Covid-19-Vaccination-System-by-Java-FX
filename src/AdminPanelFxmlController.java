@@ -2,13 +2,18 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 
 public class AdminPanelFxmlController implements Initializable {
@@ -46,19 +51,29 @@ public class AdminPanelFxmlController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        infoLabel.setText("");
     }    
 
     @FXML
     private void adminSearchBtnAction(ActionEvent event) {
+        System.out.println("Search Working");
     }
 
     @FXML
     private void adminUpdateBtnAction(ActionEvent event) {
+        System.out.println("Update Working");
     }
 
     @FXML
-    private void adminLogoutBtnAction(ActionEvent event) {
-    }
-    
+    private void adminLogoutBtnAction(ActionEvent event) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("IntroPageFXML.fxml"));             
+        
+        Scene adminPanelScene = new Scene(root);
+        Stage stage = (Stage)logoutButton.getScene().getWindow();
+        stage.setScene(adminPanelScene);
+        Image appLogo = new Image("image/AppLogo.png");
+        stage.getIcons().add(appLogo);
+        stage.setTitle("Welcome to Covid-19 Vaccination Program");
+        stage.show();
+    } 
 }

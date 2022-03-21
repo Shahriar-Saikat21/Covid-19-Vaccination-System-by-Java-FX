@@ -30,9 +30,15 @@ public class IntroPageFXMLController implements Initializable {
     }
 
     @FXML
-    private void adminLogInBtnAction(ActionEvent event) {
-        System.out.println("ssss");
-        
-    }
-    
+    private void adminLogInBtnAction(ActionEvent event) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("AdminLogInFXML.fxml"));
+               
+        Scene adminLogInScene = new Scene(root);
+        Stage stage = (Stage) adminLogInBtn.getScene().getWindow();
+        stage.setScene(adminLogInScene);
+        Image appLogo = new Image("image/AppLogo.png");
+        stage.getIcons().add(appLogo);
+        stage.setTitle("Admin Log In Page");
+        stage.show();        
+    }   
 }
