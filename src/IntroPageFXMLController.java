@@ -25,8 +25,16 @@ public class IntroPageFXMLController implements Initializable {
     }    
 
     @FXML
-    private void registrationBtnAction(ActionEvent event) {
-        System.out.println("Registration Working");
+    private void registrationBtnAction(ActionEvent event) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("RegistrationFXML.fxml"));
+               
+        Scene registrationScene = new Scene(root);
+        Stage stage = (Stage) adminLogInBtn.getScene().getWindow();
+        stage.setScene(registrationScene);
+        Image appLogo = new Image("image/AppLogo.png");
+        stage.getIcons().add(appLogo);
+        stage.setTitle("Registration Page");
+        stage.show();
     }
 
     @FXML
