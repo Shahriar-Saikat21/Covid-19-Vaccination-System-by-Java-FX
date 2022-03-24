@@ -40,10 +40,32 @@
                <font>
                   <Font name="System Bold" size="18.0" />
                </font></PasswordField>
-            <Button fx:id="otpButton" mnemonicParsing="false" onAction="#adminLogInOTPAction" text="Send OTP">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font></Button>
+            <HBox prefHeight="51.0" prefWidth="346.0">
+               <children>
+                  <Button fx:id="otpButton" mnemonicParsing="false" onAction="#adminLogInOTPAction" text="Send OTP">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <VBox prefHeight="35.0" prefWidth="222.0">
+                     <children>
+                        <Label text="*** If you don't receive any SMS " textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="10.0" text="then press &quot;Send OTP&quot; button again" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
             <Label fx:id="adminLogInOTPLabel" text="Enter OTP" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
