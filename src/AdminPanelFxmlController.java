@@ -35,7 +35,7 @@ public class AdminPanelFxmlController implements Initializable {
     @FXML
     private Label doseOneLabel;
     @FXML
-    private ComboBox<?> doseOneComboBox;
+    private ComboBox<String> doseOneComboBox;
     @FXML
     private Label dateOneLabel;
     @FXML
@@ -43,7 +43,7 @@ public class AdminPanelFxmlController implements Initializable {
     @FXML
     private Label doseTwoLabel;
     @FXML
-    private ComboBox<?> doseTwoComboBox;
+    private ComboBox<String> doseTwoComboBox;
     @FXML
     private Label dateTwoLabel;
     @FXML
@@ -52,6 +52,9 @@ public class AdminPanelFxmlController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         infoLabel.setText("");
+        
+        doseOneComboBox.getItems().addAll("Moderna","Pfizer","AstraZeneca","Sinopharm","Janssen");
+        doseTwoComboBox.getItems().addAll("Moderna","Pfizer","AstraZeneca","Sinopharm","Janssen");
     }    
 
     @FXML

@@ -41,7 +41,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="doseOneComboBox" prefWidth="150.0" />
+            <ComboBox fx:id="doseOneComboBox" prefWidth="150.0" promptText="Select Vaccine" />
             <Label fx:id="dateOneLabel" text="Date">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -53,7 +53,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="doseTwoComboBox" prefWidth="150.0" />
+            <ComboBox fx:id="doseTwoComboBox" prefWidth="150.0" promptText="Select Vaccine" />
             <Label fx:id="dateTwoLabel" text="Date">
                <font>
                   <Font name="System Bold" size="18.0" />
