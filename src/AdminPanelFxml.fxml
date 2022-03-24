@@ -9,97 +9,79 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #FFD365;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminPanelFxmlController">
    <children>
-      <Label fx:id="searchLabel" layoutX="28.0" layoutY="58.0" prefHeight="21.0" prefWidth="62.0" text="Search">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <TextField fx:id="searchTF" layoutX="109.0" layoutY="53.0" prefHeight="40.0" prefWidth="273.0" promptText="Enter NID Number">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </TextField>
-      <Button fx:id="searchButton" layoutX="402.0" layoutY="53.0" mnemonicParsing="false" onAction="#adminSearchBtnAction" style="-fx-background-color: #39b54a;" text="Search" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
-      <Label fx:id="infoLabel" layoutX="281.0" layoutY="109.0" prefHeight="246.0" prefWidth="686.0" style="-fx-background-color: #ffffff;" text="Label">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font></Label>
-      <ImageView fx:id="imageView" fitHeight="244.0" fitWidth="200.0" layoutX="52.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="updateButton" layoutX="883.0" layoutY="456.0" mnemonicParsing="false" onAction="#adminUpdateBtnAction" style="-fx-background-color: #39b54a;" text="Update" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
-      <Button fx:id="logoutButton" layoutX="870.0" layoutY="50.0" mnemonicParsing="false" onAction="#adminLogoutBtnAction" text="Logout" textFill="RED">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
-      <HBox layoutX="30.0" layoutY="400.0" prefHeight="50.0" prefWidth="966.0">
+      <ImageView fx:id="imageView" fitHeight="199.0" fitWidth="200.0" layoutX="25.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true" />
+      <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="87.0" prefWidth="1002.0" style="-fx-background-color: #39b54a;">
+         <children>
+            <TextField fx:id="searchTF" layoutX="24.0" layoutY="27.0" prefHeight="40.0" prefWidth="273.0" promptText="Enter NID Number">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </TextField>
+            <Button fx:id="searchButton" layoutX="312.0" layoutY="28.0" mnemonicParsing="false" onAction="#adminSearchBtnAction" style="-fx-background-color: #ffffff;" text="Search" textFill="#39b54a">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="logoutButton" layoutX="892.0" layoutY="29.0" mnemonicParsing="false" onAction="#adminLogoutBtnAction" style="-fx-background-color: #00C897;" text="Logout" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <VBox layoutX="621.0" layoutY="97.0" prefHeight="491.0" prefWidth="358.0" spacing="10.0">
          <children>
             <Label fx:id="doseOneLabel" text="1st Dose">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
-               <HBox.margin>
-                  <Insets right="8.0" />
-               </HBox.margin>
             </Label>
-            <ComboBox fx:id="doseOneComboBox" prefWidth="150.0">
-               <HBox.margin>
-                  <Insets right="8.0" />
-               </HBox.margin>
-            </ComboBox>
+            <ComboBox fx:id="doseOneComboBox" prefWidth="150.0" />
             <Label fx:id="dateOneLabel" text="Date">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
-               <HBox.margin>
-                  <Insets right="8.0" />
-               </HBox.margin>
             </Label>
-            <DatePicker fx:id="datePickerOne">
-               <HBox.margin>
-                  <Insets right="8.0" />
-               </HBox.margin>
-            </DatePicker>
+            <DatePicker fx:id="datePickerOne" />
             <Label fx:id="doseTwoLabel" text="2nd Dose">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
-               <HBox.margin>
-                  <Insets right="8.0" />
-               </HBox.margin>
             </Label>
-            <ComboBox fx:id="doseTwoComboBox" prefWidth="150.0">
-               <HBox.margin>
-                  <Insets right="8.0" />
-               </HBox.margin>
-            </ComboBox>
+            <ComboBox fx:id="doseTwoComboBox" prefWidth="150.0" />
             <Label fx:id="dateTwoLabel" text="Date">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
-               <HBox.margin>
-                  <Insets right="8.0" />
-               </HBox.margin>
             </Label>
             <DatePicker fx:id="datePickerTwo" />
+            <Button fx:id="updateButton" mnemonicParsing="false" onAction="#adminUpdateBtnAction" style="-fx-background-color: #39b54a;" text="Update" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="94.0" fitWidth="257.0" pickOnBounds="true">
+               <image>
+                  <Image url="@image/Logo.png" />
+               </image>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </ImageView>
          </children>
-      </HBox>
-      <ImageView fitHeight="94.0" fitWidth="257.0" layoutX="30.0" layoutY="472.0" pickOnBounds="true">
-         <image>
-            <Image url="@image/Logo.png" />
-         </image>
-      </ImageView>
+         <padding>
+            <Insets left="30.0" top="20.0" />
+         </padding>
+      </VBox>
+      <Label fx:id="infoLabel" layoutX="19.0" layoutY="328.0" prefHeight="239.0" prefWidth="598.0" text="Label">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
