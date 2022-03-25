@@ -56,12 +56,13 @@ public class AdminLogInFXMLController implements Initializable{
     private void adminLogInAction(ActionEvent event) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("AdminPanelFXML.fxml"));             
         
-        Scene adminLogInScene = new Scene(root);
+        Scene adminPanelScene = new Scene(root);
         Stage stage = (Stage)logInButton.getScene().getWindow();
-        stage.setScene(adminLogInScene);
+        stage.setScene(adminPanelScene);
         Image appLogo = new Image("image/AppLogo.png");
         stage.getIcons().add(appLogo);
         stage.setTitle("Admin Panel");
+        adminPanelScene.getStylesheets().add(getClass().getResource("adminPanelStyle.css").toExternalForm());
         stage.show();
     }
 
