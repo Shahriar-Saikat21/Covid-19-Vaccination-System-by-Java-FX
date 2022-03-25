@@ -14,7 +14,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #FFD365;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminPanelFxmlController">
    <children>
-      <ImageView fx:id="imageView" fitHeight="199.0" fitWidth="200.0" layoutX="25.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageView" fitHeight="199.0" fitWidth="200.0" layoutX="20.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true" />
       <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="87.0" prefWidth="1002.0" style="-fx-background-color: #39b54a;">
          <children>
             <TextField fx:id="searchTF" layoutX="24.0" layoutY="27.0" prefHeight="40.0" prefWidth="273.0" promptText="Enter NID Number">
@@ -47,7 +47,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <DatePicker fx:id="datePickerOne" />
+            <DatePicker fx:id="datePickerOne" promptText="Enter Date" />
             <Label fx:id="doseTwoLabel" text="2nd Dose">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -59,7 +59,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <DatePicker fx:id="datePickerTwo" />
+            <DatePicker fx:id="datePickerTwo" promptText="Enter Date" />
             <Button fx:id="updateButton" mnemonicParsing="false" onAction="#adminUpdateBtnAction" style="-fx-background-color: #39b54a;" text="Update" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -78,9 +78,14 @@
             <Insets left="30.0" top="20.0" />
          </padding>
       </VBox>
-      <Label fx:id="infoLabel" layoutX="19.0" layoutY="328.0" prefHeight="239.0" prefWidth="598.0" text="Label">
+      <Label fx:id="infoLabel" layoutX="19.0" layoutY="344.0" prefHeight="239.0" prefWidth="598.0" text="Label">
          <font>
             <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="97.0" text="Detail Information :">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
    </children>
