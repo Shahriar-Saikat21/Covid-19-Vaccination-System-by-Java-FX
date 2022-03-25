@@ -34,6 +34,7 @@ public class IntroPageFXMLController implements Initializable {
         Image appLogo = new Image("image/AppLogo.png");
         stage.getIcons().add(appLogo);
         stage.setTitle("Registration Page");
+        registrationScene.getStylesheets().add(getClass().getResource("registrationPageStyle.css").toExternalForm());
         stage.show();
     }
 

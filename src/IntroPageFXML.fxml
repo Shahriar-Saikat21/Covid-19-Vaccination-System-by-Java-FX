@@ -15,12 +15,12 @@
                <image>
                   <Image url="@image/Logo.png" />
                </image></ImageView>
-            <Button fx:id="registrationBtn" mnemonicParsing="false" onAction="#registrationBtnAction" prefHeight="52.0" prefWidth="246.0" style="-fx-background-color: #39b54a;" text="Registration" textFill="WHITE">
+            <Button fx:id="registrationBtn" mnemonicParsing="false" onAction="#registrationBtnAction" prefHeight="52.0" prefWidth="246.0" text="Registration">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="adminLogInBtn" mnemonicParsing="false" onAction="#adminLogInBtnAction" prefHeight="52.0" prefWidth="246.0" style="-fx-background-color: #00C897;" text="Admin Log In" textFill="WHITE">
+            <Button fx:id="adminLogInBtn" mnemonicParsing="false" onAction="#adminLogInBtnAction" prefHeight="52.0" prefWidth="246.0" text="Admin Log In">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>

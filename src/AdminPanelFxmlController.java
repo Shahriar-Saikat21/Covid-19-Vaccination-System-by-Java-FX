@@ -71,12 +71,13 @@ public class AdminPanelFxmlController implements Initializable {
     private void adminLogoutBtnAction(ActionEvent event) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("IntroPageFXML.fxml"));             
         
-        Scene adminPanelScene = new Scene(root);
+        Scene introScene = new Scene(root);
         Stage stage = (Stage)logoutButton.getScene().getWindow();
-        stage.setScene(adminPanelScene);
+        stage.setScene(introScene);
         Image appLogo = new Image("image/AppLogo.png");
         stage.getIcons().add(appLogo);
         stage.setTitle("Welcome to Covid-19 Vaccination Program");
+        introScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         stage.show();
     } 
 }

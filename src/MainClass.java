@@ -7,7 +7,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
-public class MainClass extends  Application{
+public class MainClass extends  Application{   
+    
     public static void main(String[] args) {
         launch(args);
     }
@@ -21,6 +22,9 @@ public class MainClass extends  Application{
         Image appLogo = new Image("image/AppLogo.png");
         stage.getIcons().add(appLogo);
         stage.setTitle("Welcome to Covid-19 Vaccination Program");
+        
+        introScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        
         stage.setResizable(false);
         stage.show();       
         

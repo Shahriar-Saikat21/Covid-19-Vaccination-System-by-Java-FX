@@ -39,22 +39,22 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <Button fx:id="registrationBtn" mnemonicParsing="false" onMouseClicked="#registrationBtnAction" prefHeight="70.0" prefWidth="425.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="Registration" textFill="WHITE">
+                  <Button fx:id="registrationBtn" mnemonicParsing="false" onMouseClicked="#registrationBtnAction" prefHeight="70.0" prefWidth="425.0" text="Registration">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="vaccineCardBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#vaccineCardBtnAction" prefHeight="70.0" prefWidth="259.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="Vaccine Card" textFill="WHITE">
+                  <Button fx:id="vaccineCardBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#vaccineCardBtnAction" prefHeight="70.0" prefWidth="259.0" text="Vaccine Card">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="certificateBtn" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#certificateBtnAction" prefHeight="70.0" prefWidth="264.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="Certificate" textFill="WHITE">
+                  <Button fx:id="certificateBtn" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#certificateBtnAction" prefHeight="70.0" prefWidth="264.0" text="Certificate">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="backToHomeBtn" layoutX="10.0" layoutY="151.0" mnemonicParsing="false" onAction="#backToHomeBtnAction" prefHeight="70.0" prefWidth="264.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="Back To Home" textFill="WHITE">
+                  <Button fx:id="backToHomeBtn" layoutX="10.0" layoutY="151.0" mnemonicParsing="false" onAction="#backToHomeBtnAction" prefHeight="70.0" prefWidth="264.0" text="Back To Home">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

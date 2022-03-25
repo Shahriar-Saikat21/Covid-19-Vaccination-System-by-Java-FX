@@ -49,6 +49,7 @@ public class RegistrationFXMLController implements Initializable {
         Image appLogo = new Image("image/AppLogo.png");
         stage.getIcons().add(appLogo);
         stage.setTitle("Welcome to Covid-19 Vaccination Program");
+        introScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         stage.show();
     }
 

@@ -1,0 +1,33 @@
+#registrationBtn{
+    -fx-background-color:#39b54a;
+    -fx-border-color:#f5f5f5;
+    -fx-text-fill:#ffffff;
+}
+#registrationBtn:hover{
+    -fx-background-color: #00C897;
+}
+#vaccineCardBtn{
+    -fx-background-color:#39b54a;
+    -fx-border-color:#f5f5f5;
+    -fx-text-fill:#ffffff;
+}
+#vaccineCardBtn:hover{
+    -fx-background-color: #00C897;
+}
+#certificateBtn{
+    -fx-background-color:#39b54a;
+    -fx-border-color:#f5f5f5;
+    -fx-text-fill:#ffffff;
+}
+#certificateBtn:hover{
+    -fx-background-color: #00C897;
+}
+#backToHomeBtn{
+    -fx-background-color:#39b54a;
+    -fx-border-color:#f5f5f5;
+    -fx-text-fill:#ffffff;
+}
+#backToHomeBtn:hover{
+    -fx-background-color: #00C897;
+}
+
