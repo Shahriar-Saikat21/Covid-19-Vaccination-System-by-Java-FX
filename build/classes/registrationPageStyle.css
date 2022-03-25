@@ -6,6 +6,10 @@
 #registrationBtn:hover{
     -fx-background-color: #00C897;
 }
+#registrationBtn:pressed{
+    -fx-background-color: #FFD365;
+}
+
 #vaccineCardBtn{
     -fx-background-color:#39b54a;
     -fx-border-color:#f5f5f5;
@@ -14,6 +18,10 @@
 #vaccineCardBtn:hover{
     -fx-background-color: #00C897;
 }
+#vaccineCardBtn:pressed{
+    -fx-background-color: #FFD365;
+}
+
 #certificateBtn{
     -fx-background-color:#39b54a;
     -fx-border-color:#f5f5f5;
@@ -22,6 +30,10 @@
 #certificateBtn:hover{
     -fx-background-color: #00C897;
 }
+#certificateBtn:pressed{
+    -fx-background-color: #FFD365;
+}
+
 #backToHomeBtn{
     -fx-background-color:#39b54a;
     -fx-border-color:#f5f5f5;
@@ -29,5 +41,8 @@
 }
 #backToHomeBtn:hover{
     -fx-background-color: #00C897;
+}
+#backToHomeBtn:pressed{
+    -fx-background-color: #FFD365;
 }
 
