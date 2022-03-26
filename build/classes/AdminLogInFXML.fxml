@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -12,11 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #FFD365;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #FFD365;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminLogInFXMLController">
    <children>
       <VBox layoutX="510.0" layoutY="62.0" prefHeight="492.0" prefWidth="406.0" spacing="12.0" style="-fx-background-color: #39b54a;">
          <children>
-            <Label fx:id="AdminLogInLabel" graphicTextGap="10.0" text="Admin Log In" textFill="WHITE">
+            <Label fx:id="adminLogInLabel" graphicTextGap="10.0" text="Admin Log In" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="33.0" />
                </font>
@@ -26,50 +27,81 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="UserNameTF" promptText="Enter User Name">
+            <TextField fx:id="userNameTF" promptText="Enter User Name">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </TextField>
-            <Label fx:id="PasswordLabel" graphicTextGap="20.0" text="Password" textFill="WHITE">
+            <Label fx:id="passwordLabel" graphicTextGap="20.0" text="Password" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <PasswordField fx:id="PasswordTF" promptText="Enter Your password">
+            <PasswordField fx:id="passwordTF" promptText="Enter Your password">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font></PasswordField>
-            <Button fx:id="OTPButton" mnemonicParsing="false" onAction="#AdminLogInOTPAction" text="Send OTP">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font></Button>
-            <Label fx:id="AdminLogInlOTP" text="Enter OTP" textFill="WHITE">
+            <HBox prefHeight="51.0" prefWidth="346.0">
+               <children>
+                  <Button fx:id="otpButton" mnemonicParsing="false" onAction="#adminLogInOTPAction" text="Send OTP">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <VBox prefHeight="35.0" prefWidth="222.0">
+                     <children>
+                        <Label text="*** If you don't receive any SMS " textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="10.0" text="then press &quot;Send OTP&quot; button again" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+            <Label fx:id="adminLogInOTPLabel" text="Enter OTP" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="OTPTF" promptText="Enter OTP">
+            <TextField fx:id="otpTF" promptText="Enter OTP">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font></TextField>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="LogInButton" mnemonicParsing="false" onAction="#AdminLogInAction" text="Log In">
+                  <Button fx:id="logInButton" mnemonicParsing="false" onAction="#adminLogInAction" text="Log In">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
-                  <Button fx:id="BackButton" mnemonicParsing="false" onAction="#AdminLogInBackAction" prefHeight="25.0" prefWidth="83.0" text="Back">
+                  <Button fx:id="adminLogInBackButton" mnemonicParsing="false" onAction="#adminLogInBackAction" prefHeight="25.0" prefWidth="83.0" text="Back">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
                <VBox.margin>
