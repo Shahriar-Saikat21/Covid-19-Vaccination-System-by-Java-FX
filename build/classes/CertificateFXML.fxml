@@ -49,9 +49,9 @@
                         </Label>
                         <HBox prefHeight="83.0" prefWidth="282.0" spacing="10.0">
                            <children>
-                              <ComboBox prefHeight="25.0" prefWidth="103.0" />
-                              <ComboBox prefHeight="25.0" prefWidth="104.0" />
-                              <ComboBox prefHeight="25.0" prefWidth="99.0" />
+                              <ComboBox fx:id="comboboxdate" prefHeight="25.0" prefWidth="103.0" />
+                              <ComboBox fx:id="comboboxmonth" prefHeight="25.0" prefWidth="104.0" />
+                              <ComboBox fx:id="comboboxyear" prefHeight="25.0" prefWidth="99.0" />
                            </children>
                         </HBox>
                      </children>
