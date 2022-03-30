@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -78,11 +82,69 @@
          <center>
             <AnchorPane fx:id="registrationPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="332.0" layoutY="283.0" text="Page one">
+                  <Label layoutX="25.0" layoutY="42.0" prefHeight="33.0" prefWidth="501.0" text="Enter Your necessary information for vaccine registration">
                      <font>
-                        <Font size="40.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
+                  <Label fx:id="otpLabel" layoutX="55.0" layoutY="294.0" prefHeight="26.0" prefWidth="106.0" text="Enter OTP">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="otpTextField" layoutX="56.0" layoutY="338.0" />
+                  <Button fx:id="sendOtpButton" layoutX="291.0" layoutY="338.0" mnemonicParsing="false" onAction="#registrationSendOtpAction" prefHeight="31.0" prefWidth="98.0" text="Send OTP">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="56.0" layoutY="385.0" text="*** If You Don't recive OTP sms, Then press &quot;Send OTP&quot; button again.***">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="registerButton" layoutX="108.0" layoutY="474.0" mnemonicParsing="false" onAction="#completeRegistrationButton" prefHeight="44.0" prefWidth="139.0" text="Register">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <HBox layoutX="27.0" layoutY="92.0" prefHeight="130.0" prefWidth="672.0">
+                     <children>
+                        <VBox prefHeight="130.0" prefWidth="222.0" spacing="10.0">
+                           <children>
+                              <Label fx:id="nidLabel" prefHeight="29.0" prefWidth="130.0" text="Enter Your NID">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField text="100XXX">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="130.0" prefWidth="451.0" spacing="10.0">
+                           <children>
+                              <Label fx:id="dateOfBirthLabel" text="Date of Birth">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <HBox prefHeight="70.0" prefWidth="451.0" spacing="10.0">
+                                 <children>
+                                    <ComboBox fx:id="dayComboBox" prefHeight="25.0" prefWidth="104.0" promptText="Date" />
+                                    <ComboBox fx:id="monthComboBox" prefHeight="25.0" prefWidth="104.0" promptText="Month" />
+                                    <ComboBox fx:id="yearComboBox" prefHeight="25.0" prefWidth="104.0" promptText="Year" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
          </center>

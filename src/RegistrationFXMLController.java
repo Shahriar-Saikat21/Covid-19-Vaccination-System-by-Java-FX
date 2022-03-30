@@ -7,6 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -32,11 +35,31 @@ public class RegistrationFXMLController implements Initializable {
 
     @FXML
     private Button vaccineCardBtn;
+    @FXML
+    private Label otpLabel;
+    @FXML
+    private TextField otpTextField;
+    @FXML
+    private Button sendOtpButton;
+    @FXML
+    private Button registerButton;
+    @FXML
+    private Label nidLabel;
+    @FXML
+    private Label dateOfBirthLabel;
+    @FXML
+    private ComboBox<String> dayComboBox;
+    @FXML
+    private ComboBox<String> monthComboBox;
+    @FXML
+    private ComboBox<String> yearComboBox;
 
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        dayComboBox.getItems().addAll("01","02","03","04","05","06","07","08","09","10","11","12","13","14","15");
+        monthComboBox.getItems().addAll("January");
+        yearComboBox.getItems().addAll("1920");
     }   
     
     @FXML
@@ -77,4 +100,12 @@ public class RegistrationFXMLController implements Initializable {
         }             
         borderPane.setCenter(root);
     }   
+
+    @FXML
+    private void registrationSendOtpAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void completeRegistrationButton(ActionEvent event) {
+    }
 }
