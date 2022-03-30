@@ -1,0 +1,27 @@
+#registrationBtn{
+    -fx-background-color:#39b54a;
+    -fx-border-color: #39b54a;
+    -fx-border-width:2px;
+    -fx-background-radius: 5em;
+    -fx-border-radius: 5em;
+    -fx-text-fill:#ffffff;    
+}
+
+#registrationBtn:hover{
+    -fx-background-color:#f5f5f5;
+    -fx-text-fill:#39b54a;
+}
+
+#adminLogInBtn{
+    -fx-background-color: #00C897;
+    -fx-border-color:  #00C897;
+    -fx-border-width:2px;
+    -fx-background-radius: 5em;
+    -fx-border-radius: 5em;
+    -fx-text-fill:#ffffff;
+}
+
+#adminLogInBtn:hover{
+    -fx-background-color:#f5f5f5;
+    -fx-text-fill: #00C897;
+}

@@ -56,12 +56,13 @@ public class AdminLogInFXMLController implements Initializable{
     private void adminLogInAction(ActionEvent event) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("AdminPanelFXML.fxml"));             
         
-        Scene introScene = new Scene(root);
+        Scene adminPanelScene = new Scene(root);
         Stage stage = (Stage)logInButton.getScene().getWindow();
-        stage.setScene(introScene);
+        stage.setScene(adminPanelScene);
         Image appLogo = new Image("image/AppLogo.png");
         stage.getIcons().add(appLogo);
         stage.setTitle("Admin Panel");
+        adminPanelScene.getStylesheets().add(getClass().getResource("adminPanelStyle.css").toExternalForm());
         stage.show();
     }
 
@@ -69,12 +70,13 @@ public class AdminLogInFXMLController implements Initializable{
     private void adminLogInBackAction(ActionEvent event) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("IntroPageFXML.fxml"));             
         
-        Scene adminLogInScene = new Scene(root);
+        Scene introScene = new Scene(root);
         Stage stage = (Stage)adminLogInBackButton.getScene().getWindow();
-        stage.setScene(adminLogInScene);
+        stage.setScene(introScene);
         Image appLogo = new Image("image/AppLogo.png");
         stage.getIcons().add(appLogo);
         stage.setTitle("Welcome to Covid-19 Vaccination Program");
+        introScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         stage.show();
     }
 }

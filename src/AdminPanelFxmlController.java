@@ -35,7 +35,7 @@ public class AdminPanelFxmlController implements Initializable {
     @FXML
     private Label doseOneLabel;
     @FXML
-    private ComboBox<?> doseOneComboBox;
+    private ComboBox<String> doseOneComboBox;
     @FXML
     private Label dateOneLabel;
     @FXML
@@ -43,7 +43,7 @@ public class AdminPanelFxmlController implements Initializable {
     @FXML
     private Label doseTwoLabel;
     @FXML
-    private ComboBox<?> doseTwoComboBox;
+    private ComboBox<String> doseTwoComboBox;
     @FXML
     private Label dateTwoLabel;
     @FXML
@@ -52,6 +52,9 @@ public class AdminPanelFxmlController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         infoLabel.setText("");
+        
+        doseOneComboBox.getItems().addAll("Moderna","Pfizer","AstraZeneca","Sinopharm","Janssen");
+        doseTwoComboBox.getItems().addAll("Moderna","Pfizer","AstraZeneca","Sinopharm","Janssen");
     }    
 
     @FXML
@@ -68,12 +71,13 @@ public class AdminPanelFxmlController implements Initializable {
     private void adminLogoutBtnAction(ActionEvent event) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("IntroPageFXML.fxml"));             
         
-        Scene adminPanelScene = new Scene(root);
+        Scene introScene = new Scene(root);
         Stage stage = (Stage)logoutButton.getScene().getWindow();
-        stage.setScene(adminPanelScene);
+        stage.setScene(introScene);
         Image appLogo = new Image("image/AppLogo.png");
         stage.getIcons().add(appLogo);
         stage.setTitle("Welcome to Covid-19 Vaccination Program");
+        introScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         stage.show();
     } 
 }
