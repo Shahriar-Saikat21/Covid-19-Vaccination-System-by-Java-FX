@@ -57,9 +57,9 @@ public class RegistrationFXMLController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        dayComboBox.getItems().addAll("01","02","03","04","05","06","07","08","09","10","11","12","13","14","15");
-        monthComboBox.getItems().addAll("January");
-        yearComboBox.getItems().addAll("1920");
+        dayComboBox.getItems().addAll("01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31");
+        monthComboBox.getItems().addAll("January","February","March","April","May","June","July","August","September","October","November","December");
+        yearComboBox.getItems().addAll("1920","1921","1922","1923","1924","1925","1926","1927","1928","1929","1930","1931","1932","1933","1934","1935","1936","1937","1938","1939","1940","1941","1942","1943","1944","1945","1946","1947","1948","1949","1950");
     }   
     
     @FXML
