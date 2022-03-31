@@ -10,84 +10,100 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CertificateFXMLController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CertificateFXMLController">
    <children>
-      <VBox layoutX="36.0" layoutY="27.0" prefHeight="315.0" prefWidth="550.0" spacing="10.0">
+      <VBox prefHeight="487.0" prefWidth="769.0" spacing="15.0">
          <children>
-            <Label text="Enter your necessary information download Vaccine Certificate">
+            <Label text="Download Your Vaccine Certificate">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
             </Label>
             <HBox prefHeight="100.0" prefWidth="284.0">
                <children>
-                  <VBox prefHeight="146.0" prefWidth="287.0">
+                  <VBox prefHeight="146.0" prefWidth="287.0" spacing="5.0">
                      <children>
-                        <Label fx:id="certificateYourNID" text="Enter Your NID">
+                        <Label text="Enter Your NID">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField promptText="100XXX " />
-                        <Label fx:id="certificateEmailAddress" text="Enter Your Email Address">
+                        <TextField fx:id="nidTF" promptText="100XXX ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin></TextField>
+                        <Label text="Enter Your Email Address">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField />
+                        <TextField fx:id="mailTF">
+                           <font>
+                              <Font size="14.0" />
+                           </font></TextField>
                      </children>
                      <HBox.margin>
-                        <Insets right="5.0" />
+                        <Insets right="10.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox prefHeight="100.0" prefWidth="328.0">
+                  <VBox prefHeight="100.0" prefWidth="328.0" spacing="5.0">
                      <children>
-                        <Label fx:id="certificateDateofBirth" text="Date of Birth">
+                        <Label text="Date of Birth">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                         <HBox prefHeight="83.0" prefWidth="282.0" spacing="10.0">
                            <children>
-                              <ComboBox fx:id="comboboxdate" prefHeight="25.0" prefWidth="103.0" />
-                              <ComboBox fx:id="comboboxmonth" prefHeight="25.0" prefWidth="104.0" />
-                              <ComboBox fx:id="comboboxyear" prefHeight="25.0" prefWidth="99.0" />
+                              <ComboBox fx:id="comboBoxDate" prefHeight="25.0" prefWidth="103.0" promptText="Date" />
+                              <ComboBox fx:id="comboBoxMonth" prefHeight="25.0" prefWidth="104.0" promptText="Month" />
+                              <ComboBox fx:id="comboBoxYear" prefHeight="25.0" prefWidth="99.0" promptText="Year" />
                            </children>
                         </HBox>
                      </children>
                   </VBox>
                </children>
             </HBox>
-            <Label fx:id="certificateOTP" text="Enter OTP">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <HBox prefHeight="41.0" prefWidth="550.0" spacing="10.0">
+            <VBox prefHeight="373.0" prefWidth="750.0" spacing="15.0">
                <children>
-                  <TextField>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </TextField>
-                  <Button fx:id="certificatesentOTPbtn" mnemonicParsing="false" onAction="#certificatesentOTPAction" text="Sent OTP">
+                  <Button fx:id="certificateSendOtpBtn" mnemonicParsing="false" onAction="#certificateSendOtpBtnAction" text="Send OTP">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <TextField fx:id="otpTF" maxWidth="300.0" promptText="Enter OTP">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Label text="*** If you don't receive OTP sms,then press &quot;Send OTP&quot; button again">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Button fx:id="sendCertificateBtn" mnemonicParsing="false" onAction="#sendCertificateBtnAction" text="Send Certificate">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Button>
                </children>
-            </HBox>
-            <Label text="If You don't receive OTP sms,then press &quot;send OTP&quot; button again">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <Button fx:id="sendcertificatebtn" mnemonicParsing="false" onAction="#sendcertificateAction" text="Send Certificate">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
+            </VBox>
          </children>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
       </VBox>
    </children>
 </AnchorPane>

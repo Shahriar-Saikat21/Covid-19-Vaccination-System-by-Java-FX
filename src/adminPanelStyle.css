@@ -5,3 +5,22 @@
     -fx-background-color: #FFD365;
     -fx-text-fill:#00C897;
 }
+
+#updateButton{
+    -fx-background-color:#39b54a;
+    -fx-text-fill:#ffffff;
+}
+#updateButton:hover{
+    -fx-background-color:#00C897;
+}
+
+#searchButton{
+    -fx-background-color:#ffffff;
+    -fx-text-fill:#39b54a;
+}
+#searchButton:hover{
+    -fx-background-color:#00C897;
+    -fx-text-fill:#ffffff;
+}
+
+

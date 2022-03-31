@@ -10,6 +10,10 @@
     -fx-background-color: #FFD365;
 }
 
+#registerButton:selected{
+    -fx-background-color: #00C897;
+}
+
 #vaccineCardBtn{
     -fx-background-color:#39b54a;
     -fx-border-color:#f5f5f5;
@@ -44,5 +48,53 @@
 }
 #backToHomeBtn:pressed{
     -fx-background-color: #FFD365;
+}
+
+#sendOtpButton{
+    -fx-background-color:#39b54a;
+    -fx-text-fill:#ffffff;
+}
+#sendOtpButton:hover{
+    -fx-background-color:#00C897;
+}
+
+#registerButton{
+    -fx-background-color:#39b54a;
+    -fx-text-fill:#ffffff;
+}
+#registerButton:hover{
+    -fx-background-color:#00C897;
+}
+
+#vaccineCardOtpBtn{
+    -fx-background-color:#39b54a;
+    -fx-text-fill:#ffffff;
+}
+#vaccineCardOtpBtn:hover{
+    -fx-background-color:#00C897;
+}
+
+#sendVaccineCardbtn{
+    -fx-background-color:#39b54a;
+    -fx-text-fill:#ffffff;
+}
+#sendVaccineCardbtn:hover{
+    -fx-background-color:#00C897;
+}
+
+#certificateSendOtpBtn{
+    -fx-background-color:#39b54a;
+    -fx-text-fill:#ffffff;
+}
+#certificateSendOtpBtn:hover{
+    -fx-background-color:#00C897;
+}
+
+#sendCertificateBtn{
+    -fx-background-color:#39b54a;
+    -fx-text-fill:#ffffff;
+}
+#sendCertificateBtn:hover{
+    -fx-background-color:#00C897;
 }
 
