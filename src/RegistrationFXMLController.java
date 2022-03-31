@@ -49,6 +49,9 @@ public class RegistrationFXMLController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        registrationBtn.setStyle("-fx-background-color: #00C897;");
+        
         dayComboBox.getItems().addAll("01","02","03","04","05","06","07","08",
                 "09","10","11","12","13","14","15","16","17","18","19","20",
                 "21","22","23","24","25","26","27","28","29","30","31");
@@ -83,16 +86,28 @@ public class RegistrationFXMLController implements Initializable {
     @FXML
     void certificateBtnAction(ActionEvent event) {
         loadPage("CertificateFXML");
+        certificateBtn.setStyle("-fx-background-color: #00C897;");
+        registrationBtn.setStyle("");
+        backToHomeBtn.setStyle("");
+        vaccineCardBtn.setStyle("");
     }
 
     @FXML
     void registrationBtnAction(ActionEvent event) {
         borderPane.setCenter(registrationPane);
+        certificateBtn.setStyle("");
+        registrationBtn.setStyle("-fx-background-color: #00C897;");
+        backToHomeBtn.setStyle("");
+        vaccineCardBtn.setStyle("");
     }
 
     @FXML
     void vaccineCardBtnAction(ActionEvent event) {
         loadPage("VaccineCardFXML");
+        certificateBtn.setStyle("");
+        registrationBtn.setStyle("");
+        backToHomeBtn.setStyle("");
+        vaccineCardBtn.setStyle("-fx-background-color: #00C897;");
     }
     
     private void loadPage(String pageName){
