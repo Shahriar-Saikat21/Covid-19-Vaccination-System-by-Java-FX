@@ -49,6 +49,7 @@ public class AdminLogInFXMLController implements Initializable{
         
     }
 
+    String otpSentByMail = "";
     
     @FXML
     private void adminLogInOTPAction(ActionEvent event) throws Exception{                
@@ -65,43 +66,38 @@ public class AdminLogInFXMLController implements Initializable{
         
         if(result.next()==false){
             System.out.println("Not Found");
+            otpSentByMail = "";
+            userNameTF.setText("");
+            passwordTF.setText("");
         }else{
-            System.out.println(result.getString("mail"));
+            OTP otpgenerate = new OTP(result.getString("mail"));
+            otpSentByMail = otpgenerate.sendOTP();
         }
     }
 
     @FXML
     private void adminLogInAction(ActionEvent event) throws Exception{ 
-//        Connection DBConnection = DataBaseConnection.connectDB();
-//        
-//        String userName = userNameTF.getText();
-//        String userPassword = passwordTF.getText();
-//        
-//        String query = "select * from adminUsers where userName = BINARY ? and password = BINARY ?";
-//        PreparedStatement statement = DBConnection.prepareStatement(query);
-//        statement.setString(1, userName);
-//        statement.setString(2, userPassword);
-//        ResultSet result = statement.executeQuery();        
         
-//        if(result.next()==false){
-//            System.out.println("Login Failed !!");
-//        }else{            
-//            Parent root = FXMLLoader.load(getClass().getResource("AdminPanelFXML.fxml"));             
-//
-//            Scene adminPanelScene = new Scene(root);
-//            Stage stage = (Stage)logInButton.getScene().getWindow();
-//            stage.setScene(adminPanelScene);
-//            Image appLogo = new Image("image/AppLogo.png");
-//            stage.getIcons().add(appLogo);
-//            stage.setTitle("Admin Panel");
-//            adminPanelScene.getStylesheets().add(getClass().getResource("adminPanelStyle.css").toExternalForm());
-//            stage.show();
-//        }
-        
-        
-        
+        String otpEnterByUser = otpTF.getText();
+        if(otpEnterByUser.equals(otpSentByMail) && otpEnterByUser !=""){
+            Parent root = FXMLLoader.load(getClass().getResource("AdminPanelFXML.fxml"));             
+
+            Scene adminPanelScene = new Scene(root);
+            Stage stage = (Stage)logInButton.getScene().getWindow();
+            stage.setScene(adminPanelScene);
+            Image appLogo = new Image("image/AppLogo.png");
+            stage.getIcons().add(appLogo);
+            stage.setTitle("Admin Panel");
+            adminPanelScene.getStylesheets().add(getClass().getResource("adminPanelStyle.css").toExternalForm());
+            stage.show();
+        }else{            
+            System.out.println("Wrong OTP Entered !!");
+        }       
+               
         userNameTF.setText("");
         passwordTF.setText("");
+        otpTF.setText("");
+        otpSentByMail = "";
     }
 
     @FXML
