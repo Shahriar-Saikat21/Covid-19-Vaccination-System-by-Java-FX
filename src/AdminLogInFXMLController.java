@@ -14,8 +14,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.sql.*;
 
-public class AdminLogInFXMLController implements Initializable{
-
+public class AdminLogInFXMLController implements Initializable{   
+    
     @FXML
     private Label adminLogInLabel;
 
@@ -45,17 +45,22 @@ public class AdminLogInFXMLController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //To Do
+        
     }
     
+    
+    
+    String otpEnterByUser = otpTF.getText();
+    
+    
     @FXML
-    private void adminLogInOTPAction(ActionEvent event) {
+    private void adminLogInOTPAction(ActionEvent event) {                
         System.out.println("OTP Working");
     }
 
     @FXML
-    private void adminLogInAction(ActionEvent event) throws Exception{
-        
+    private void adminLogInAction(ActionEvent event) throws Exception{ 
         Connection DBConnection = DataBaseConnection.connectDB();
         
         String userName = userNameTF.getText();
