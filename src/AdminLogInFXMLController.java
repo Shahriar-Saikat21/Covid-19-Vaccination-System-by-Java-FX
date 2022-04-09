@@ -48,11 +48,7 @@ public class AdminLogInFXMLController implements Initializable{
         //To Do
         
     }
-    
-    
-    
-    String otpEnterByUser = otpTF.getText();
-    
+
     
     @FXML
     private void adminLogInOTPAction(ActionEvent event) {                
@@ -70,11 +66,11 @@ public class AdminLogInFXMLController implements Initializable{
         PreparedStatement statement = DBConnection.prepareStatement(query);
         statement.setString(1, userName);
         statement.setString(2, userPassword);
-        ResultSet result = statement.executeQuery();
+        ResultSet result = statement.executeQuery();        
         
         if(result.next()==false){
             System.out.println("Login Failed !!");
-        }else{
+        }else{            
             Parent root = FXMLLoader.load(getClass().getResource("AdminPanelFXML.fxml"));             
 
             Scene adminPanelScene = new Scene(root);
@@ -86,6 +82,8 @@ public class AdminLogInFXMLController implements Initializable{
             adminPanelScene.getStylesheets().add(getClass().getResource("adminPanelStyle.css").toExternalForm());
             stage.show();
         }
+        
+        
         
         userNameTF.setText("");
         passwordTF.setText("");
