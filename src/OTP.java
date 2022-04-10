@@ -17,9 +17,9 @@ public class OTP {
     }
 
     public String sendOTP() {
-            final String username = "saikat.music.design@gmail.com";
-            final String password = "saikatsaikatsaikat";
-            String fromEmail = "saikat.music.design@gmail.com";
+            final String username = "covidvaccineuiu@gmail.com";
+            final String password = "UIU@1234";
+            String fromEmail = "covidvaccineuiu@gmail.com";
             String toEmail = mailToSend;
 
             Properties properties = new Properties();
