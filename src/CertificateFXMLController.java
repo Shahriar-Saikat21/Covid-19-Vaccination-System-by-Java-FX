@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 public class CertificateFXMLController implements Initializable{
 
@@ -62,6 +63,16 @@ public class CertificateFXMLController implements Initializable{
                 "1946","1945","1944","1943","1942","1941","1940","1939","1938","1937",
                 "1936","1935","1934","1933","1933","1932","1931","1930","1929","1928",
                 "1927","1926","1925","1924","1923","1922","1921","1920");
+        
+        sendCertificateBtn.setDisable(true);
+    }
+    
+    @FXML
+    void keyPressAction(KeyEvent event) {
+        sendCertificateBtn.setDisable(false);
+        if(otpTF.getText().equals("")){
+            sendCertificateBtn.setDisable(true);
+        }
     }
 
 }

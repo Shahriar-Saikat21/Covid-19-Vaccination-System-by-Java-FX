@@ -80,7 +80,7 @@
                         <Insets bottom="20.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <TextField fx:id="otpTF" maxWidth="300.0" promptText="Enter OTP">
+                  <TextField fx:id="otpTF" maxWidth="300.0" onKeyPressed="#anyKeyPressedAction" promptText="Enter OTP">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -93,7 +93,7 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="sendVaccineCardbtn" mnemonicParsing="false" onAction="#sendVaccineCardbtnAction" text="Send Vaccine Card">
+                  <Button fx:id="sendVaccineCardbtn" mnemonicParsing="false" onAction="#sendVaccineCardbtnAction" text="Download Vaccine Card">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
