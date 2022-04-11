@@ -41,8 +41,10 @@ public class OTP {
             try {
                     msg.setFrom(new InternetAddress(fromEmail));
                     msg.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
-                    msg.setSubject("Covax Admin Login OTP");
-                    msg.setText(otpNumber+"");
+                    msg.setSubject("Covid 19 Vaccination System OTP");
+                    String mailBody = "<h2>Your One Time Password</h2><br/><h1>"+otpNumber+"</h1>";
+                    msg.setContent(mailBody,"text/html");
+                    //msg.setText(otpNumber+"");
 
                     Transport.send(msg);                    
                     System.out.println("Sent message");
