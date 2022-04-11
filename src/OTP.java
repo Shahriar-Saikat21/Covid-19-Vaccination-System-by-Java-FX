@@ -7,6 +7,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Random;
+import javafx.scene.control.Alert;
 
 public class OTP {
     
@@ -47,7 +48,12 @@ public class OTP {
                     //msg.setText(otpNumber+"");
 
                     Transport.send(msg);                    
-                    System.out.println("Sent message");
+                    
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Covid 19 Vaccination System");
+                    alert.setHeaderText("OTP");
+                    alert.setContentText("Your OTP has been sent to your email");
+                    alert.showAndWait();
                     
             } catch (MessagingException e) {
                     e.printStackTrace();

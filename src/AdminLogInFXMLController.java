@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.sql.*;
+import javafx.scene.control.Alert;
 
 public class AdminLogInFXMLController implements Initializable{   
     
@@ -65,7 +66,11 @@ public class AdminLogInFXMLController implements Initializable{
         ResultSet result = statement.executeQuery();
         
         if(result.next()==false){
-            System.out.println("Not Found");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Covid 19 Vaccination System");
+            alert.setHeaderText("Log In Error");
+            alert.setContentText("Invalid Username or Password !!");
+            alert.showAndWait();
             otpSentByMail = "";
             userNameTF.setText("");
             passwordTF.setText("");
@@ -91,7 +96,11 @@ public class AdminLogInFXMLController implements Initializable{
             adminPanelScene.getStylesheets().add(getClass().getResource("adminPanelStyle.css").toExternalForm());
             stage.show();
         }else{            
-            System.out.println("Wrong OTP Entered !!");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Covid 19 Vaccination System");
+            alert.setHeaderText("Log In Error");
+            alert.setContentText("Invalid OTP !!");
+            alert.showAndWait();
         }       
                
         userNameTF.setText("");

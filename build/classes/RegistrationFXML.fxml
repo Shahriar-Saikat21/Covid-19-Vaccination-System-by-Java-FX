@@ -157,7 +157,7 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </TextField>
-                              <Label text="*** If you don't receive OTP sms,then press &quot;Send OTP&quot; button again">
+                              <Label text="*** If you don't receive OTP email,then press &quot;Send OTP&quot; button again">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
