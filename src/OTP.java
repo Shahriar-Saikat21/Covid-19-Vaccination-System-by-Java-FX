@@ -56,7 +56,11 @@ public class OTP {
                     alert.showAndWait();
                     
             } catch (MessagingException e) {
-                    e.printStackTrace();
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Covid 19 Vaccination System");
+                    alert.setHeaderText("Error !!!");
+                    alert.setContentText(e.getMessage());
+                    alert.showAndWait();
             } 
             
             return otpNumber+"";

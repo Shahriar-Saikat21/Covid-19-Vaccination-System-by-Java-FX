@@ -62,7 +62,6 @@ public class RegistrationFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         registrationBtn.setStyle("-fx-background-color: #00C897;");
-        
         dayComboBox.getItems().addAll("01","02","03","04","05","06","07","08",
                 "09","10","11","12","13","14","15","16","17","18","19","20",
                 "21","22","23","24","25","26","27","28","29","30","31");
@@ -147,10 +146,12 @@ public class RegistrationFXMLController implements Initializable {
         String dateOfBirth = yearComboBox.getValue()+"-"+month+"-"+dayComboBox.getValue();
         
         
-        String query = "select * from nidInfo where nidNumber = BINARY ? and dateOfBirth = BINARY ?";
+        String query = "select firstName,register from nidInfo,vaccineInfo "
+                + "where nidInfo.nidNumber=BINARY ? and vaccineInfo.nidNumber = BINARY ? and nidInfo.dateOfBirth = BINARY ?";
         PreparedStatement statement = DBConnection.prepareStatement(query);
         statement.setString(1, nidNumber);
-        statement.setString(2, dateOfBirth);
+        statement.setString(2, nidNumber);
+        statement.setString(3, dateOfBirth);
         ResultSet result = statement.executeQuery();
         
         if(result.next()==false){
@@ -164,11 +165,31 @@ public class RegistrationFXMLController implements Initializable {
             nidNumForAllOp = "";
             nidTF.setText("");
             mailTF.setText("");
+            dayComboBox.setValue("");
+            monthComboBox.setValue("");
+            yearComboBox.setValue("");
             
         }else{
-            OTP mailOTP = new OTP(mail);
-            sendOTPBySystem = mailOTP.sendOTP(); 
-            System.out.println(sendOTPBySystem);
+            if(result.getString("register").equals("YES")){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Covid 19 Vaccination System");
+                alert.setHeaderText("Registration Information : ");
+                alert.setContentText("Already Registered !!");
+                alert.showAndWait();
+            
+                sendOTPBySystem = "";
+                nidNumForAllOp = "";
+                nidTF.setText("");
+                mailTF.setText("");
+                otpTF.setText("");
+                dayComboBox.setValue("");
+                monthComboBox.setValue("");
+                yearComboBox.setValue("");
+                
+            }else{
+                OTP mailOTP = new OTP(mail);
+                sendOTPBySystem = mailOTP.sendOTP(); 
+            }           
         }               
     }
 
@@ -194,6 +215,10 @@ public class RegistrationFXMLController implements Initializable {
             nidTF.setText("");
             mailTF.setText("");
             otpTF.setText("");
+            dayComboBox.setValue("");
+            monthComboBox.setValue("");
+            yearComboBox.setValue("");
+
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Covid 19 Vaccination System");
@@ -206,6 +231,9 @@ public class RegistrationFXMLController implements Initializable {
             nidTF.setText("");
             mailTF.setText("");
             otpTF.setText("");
+            dayComboBox.setValue("");
+            monthComboBox.setValue("");
+            yearComboBox.setValue("");
         }
     }
 }
