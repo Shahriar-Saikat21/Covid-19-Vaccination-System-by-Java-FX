@@ -1,4 +1,7 @@
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -6,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -33,6 +37,13 @@ public class RegistrationFXMLController implements Initializable {
 
     @FXML
     private Button vaccineCardBtn;
+   
+    @FXML
+    private TextField mailTF;
+    
+    @FXML
+    private TextField nidTF;
+    
     @FXML
     private TextField otpTextField;
     @FXML
@@ -121,8 +132,44 @@ public class RegistrationFXMLController implements Initializable {
     }   
 
     @FXML
-    private void registrationSendOtpAction(ActionEvent event) {
-        System.out.println("Registration OTP Working");
+    private void registrationSendOtpAction(ActionEvent event) throws Exception{
+        Connection DBConnection = DataBaseConnection.connectDB();
+        
+        MonthConversion monthToNumeric = new MonthConversion();
+        String month = monthToNumeric.monthNumeric(monthComboBox.getValue());
+        
+        String nidNumber = nidTF.getText();
+        String mail = mailTF.getText();
+       
+        String dateOfBirth = yearComboBox.getValue()+"-"+month+"-"+dayComboBox.getValue();
+        
+        
+        String query = "select * from nidInfo where nidNumber = BINARY ? and dateOfBirth = BINARY ?";
+        PreparedStatement statement = DBConnection.prepareStatement(query);
+        statement.setString(1, nidNumber);
+        statement.setString(2, dateOfBirth);
+        ResultSet result = statement.executeQuery();
+        
+        if(result.next()==false){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Covid 19 Vaccination System");
+            alert.setHeaderText("Registration Error");
+            alert.setContentText("Invalid Information !!");
+            alert.showAndWait();
+            nidTF.setText("");
+            mailTF.setText("");
+            
+        }else{
+            System.out.println(result.getString("nidNumber"));
+            System.out.println(result.getString("firstName"));
+            System.out.println(result.getString("lastName"));
+            System.out.println(result.getString("dateOfBirth"));
+            System.out.println(result.getString("address"));
+            System.out.println(result.getString("gender"));
+          
+        }
+        
+        
     }
 
     @FXML

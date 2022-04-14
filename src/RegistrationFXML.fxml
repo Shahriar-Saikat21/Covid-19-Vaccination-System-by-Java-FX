@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #FFD365;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RegistrationFXMLController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #FFD365;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RegistrationFXMLController">
    <children>
       <BorderPane fx:id="borderPane" layoutX="-2.0" layoutY="-5.0" prefHeight="606.0" prefWidth="1005.0">
          <left>
@@ -107,7 +107,7 @@
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField promptText="100XXX">
+                                    <TextField fx:id="nidTF" promptText="100XXX">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -117,7 +117,7 @@
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="10.0" layoutY="37.0">
+                                    <TextField fx:id="mailTF" layoutX="10.0" layoutY="37.0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
