@@ -45,7 +45,7 @@ public class RegistrationFXMLController implements Initializable {
     private TextField nidTF;
     
     @FXML
-    private TextField otpTextField;
+    private TextField otpTF;
     @FXML
     private Button sendOtpButton;
     @FXML
@@ -129,16 +129,19 @@ public class RegistrationFXMLController implements Initializable {
             e.printStackTrace();
         }             
         borderPane.setCenter(root);
-    }   
+    }
+    
+    Connection DBConnection = DataBaseConnection.connectDB();
+    String sendOTPBySystem = "";
+    String nidNumForAllOp = "";
 
     @FXML
-    private void registrationSendOtpAction(ActionEvent event) throws Exception{
-        Connection DBConnection = DataBaseConnection.connectDB();
-        
+    private void registrationSendOtpAction(ActionEvent event) throws Exception{       
         MonthConversion monthToNumeric = new MonthConversion();
         String month = monthToNumeric.monthNumeric(monthComboBox.getValue());
         
         String nidNumber = nidTF.getText();
+        nidNumForAllOp = nidNumber;
         String mail = mailTF.getText();
        
         String dateOfBirth = yearComboBox.getValue()+"-"+month+"-"+dayComboBox.getValue();
@@ -156,24 +159,53 @@ public class RegistrationFXMLController implements Initializable {
             alert.setHeaderText("Registration Error");
             alert.setContentText("Invalid Information !!");
             alert.showAndWait();
+            
+            sendOTPBySystem = "";
+            nidNumForAllOp = "";
             nidTF.setText("");
             mailTF.setText("");
             
         }else{
-            System.out.println(result.getString("nidNumber"));
-            System.out.println(result.getString("firstName"));
-            System.out.println(result.getString("lastName"));
-            System.out.println(result.getString("dateOfBirth"));
-            System.out.println(result.getString("address"));
-            System.out.println(result.getString("gender"));
-          
-        }
-        
-        
+            OTP mailOTP = new OTP(mail);
+            sendOTPBySystem = mailOTP.sendOTP(); 
+            System.out.println(sendOTPBySystem);
+        }               
     }
 
     @FXML
-    private void completeRegistrationButton(ActionEvent event) {
-        System.out.println("Registration Complete Working");
+    private void completeRegistrationButton(ActionEvent event) throws Exception{
+        String otpEnterByUser = otpTF.getText();
+        if(otpEnterByUser.equals(sendOTPBySystem)&& otpEnterByUser!=""){
+            
+            String query = "UPDATE vaccineInfo SET register = 'YES' WHERE nidNumber = BINARY ?";
+            PreparedStatement statement = DBConnection.prepareStatement(query);
+            statement.setString(1, nidNumForAllOp); 
+            
+            statement.executeUpdate();
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Covid 19 Vaccination System");
+            alert.setHeaderText("Registration Information : ");
+            alert.setContentText("Registration is successfull\nPlease Download Your Vaccine Card");
+            alert.showAndWait();
+            
+            sendOTPBySystem = "";
+            nidNumForAllOp = "";
+            nidTF.setText("");
+            mailTF.setText("");
+            otpTF.setText("");
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Covid 19 Vaccination System");
+            alert.setHeaderText("Registration Error");
+            alert.setContentText("Invalid OTP !!");
+            alert.showAndWait();
+            
+            sendOTPBySystem = "";
+            nidNumForAllOp="";
+            nidTF.setText("");
+            mailTF.setText("");
+            otpTF.setText("");
+        }
     }
 }

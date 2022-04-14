@@ -152,7 +152,7 @@
                                     <Insets bottom="20.0" top="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <TextField maxWidth="300.0" promptText="Enter OTP">
+                              <TextField fx:id="otpTF" maxWidth="300.0" promptText="Enter OTP">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
