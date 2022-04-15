@@ -104,6 +104,7 @@ public class VaccineCardFXMLController implements Initializable{
                 nidNumber = result.getString("nidNumber");
                 OTP mailOTP = new OTP(mail);
                 sendOTPBySystem = mailOTP.sendOTP(); 
+                System.out.println(sendOTPBySystem);
             }
         }
     }
