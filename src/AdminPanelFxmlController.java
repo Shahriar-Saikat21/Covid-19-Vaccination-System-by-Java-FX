@@ -1,4 +1,10 @@
+
+import com.mysql.cj.jdbc.Blob;
+import java.io.InputStream;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -58,8 +64,25 @@ public class AdminPanelFxmlController implements Initializable {
     }    
 
     @FXML
-    private void adminSearchBtnAction(ActionEvent event) {
-        System.out.println("Search Working");
+    private void adminSearchBtnAction(ActionEvent event) throws Exception{
+        Connection DBConnection = DataBaseConnection.connectDB();
+        
+        String searchNID = searchTF.getText();
+        
+        String query = "SELECT * FROM nidPicture WHERE nidNumber = BINARY ?";
+        PreparedStatement statement = DBConnection.prepareStatement(query);
+        statement.setString(1, searchNID);
+        ResultSet result = statement.executeQuery();
+        
+        if(result.next()){
+            Blob blob = (Blob) result.getBlob(2);
+            InputStream inputStream = blob.getBinaryStream();
+            Image image = new Image(inputStream);
+            imageView.setImage(image);
+            
+            System.out.println("Done");
+            
+        }
     }
 
     @FXML

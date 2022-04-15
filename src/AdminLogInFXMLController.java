@@ -77,6 +77,7 @@ public class AdminLogInFXMLController implements Initializable{
         }else{
             OTP otpgenerate = new OTP(result.getString("mail"));
             otpSentByMail = otpgenerate.sendOTP();
+            System.out.println(otpSentByMail);
         }
     }
 
