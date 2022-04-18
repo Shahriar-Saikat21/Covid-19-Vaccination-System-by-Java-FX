@@ -36,9 +36,7 @@ public class VaccineCardFXMLController implements Initializable{
 
     @FXML
     private Button vaccineCardOtpBtn;
-
-    
-    Connection DBConnection = DataBaseConnection.connectDB();
+      
     String sendOTPBySystem = "";
     String nidNumForAllOp = ""; 
     
@@ -47,6 +45,7 @@ public class VaccineCardFXMLController implements Initializable{
 
     @FXML
     void vaccineCardOtpBtnAction(ActionEvent event) throws Exception{
+        Connection DBConnection = DataBaseConnection.connectDB();
         MonthConversion monthToNumeric = new MonthConversion();
         String month = monthToNumeric.monthNumeric(comboboxmonth.getValue());
         
@@ -68,7 +67,7 @@ public class VaccineCardFXMLController implements Initializable{
         if(result.next()==false){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Covid 19 Vaccination System");
-            alert.setHeaderText("Registration Error");
+            alert.setHeaderText("Download Error");
             alert.setContentText("Invalid Information !!");
             alert.showAndWait();
             
@@ -84,7 +83,7 @@ public class VaccineCardFXMLController implements Initializable{
             if(result.getString("register").equals("NO")){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Covid 19 Vaccination System");
-                alert.setHeaderText("Registration Information : ");
+                alert.setHeaderText("Download Information : ");
                 alert.setContentText("Unregisted ID !!");
                 alert.showAndWait();
             
@@ -100,7 +99,8 @@ public class VaccineCardFXMLController implements Initializable{
             }else{               
                 detailInfo = "Name : "+result.getString("firstName")+" "+result.getString("lastName")
                         +"\nDate Of Birth : "+result.getString("dateOfBirth")+
-                        "\nAddress : "+result.getString("address")+"\nGender : "+result.getString("gender");
+                        "\nAddress : "+result.getString("address")+"\nGender : "+result.getString("gender")+
+                        "\n\nVaccine Center : "+result.getString("center");
                 nidNumber = result.getString("nidNumber");
                 OTP mailOTP = new OTP(mail);
                 sendOTPBySystem = mailOTP.sendOTP(); 

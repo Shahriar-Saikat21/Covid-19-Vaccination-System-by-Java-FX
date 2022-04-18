@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -69,19 +70,40 @@ public class AdminPanelFxmlController implements Initializable {
         
         String searchNID = searchTF.getText();
         
-        String query = "SELECT * FROM nidPicture WHERE nidNumber = BINARY ?";
+        String query = "select * from nidInfo,vaccineInfo,nidPicture "
+                + "where nidInfo.nidNumber = BINARY ?"
+                + "and vaccineInfo.nidNumber = BINARY ? and nidPicture.nidNumber = BINARY ?";
         PreparedStatement statement = DBConnection.prepareStatement(query);
         statement.setString(1, searchNID);
+        statement.setString(2, searchNID);
+        statement.setString(3, searchNID);
         ResultSet result = statement.executeQuery();
         
         if(result.next()){
-            Blob blob = (Blob) result.getBlob(2);
+            Blob blob = (Blob) result.getBlob(16);
             InputStream inputStream = blob.getBinaryStream();
             Image image = new Image(inputStream);
             imageView.setImage(image);
             
             System.out.println("Done");
             
+            infoLabel.setText("Name : "+result.getString("firstName")+" "+result.getString("lastName")+
+                    "\nNID : "+result.getString("nidNumber")+" Gender : "+result.getString("gender")+
+                    "\nAddress : "+result.getString("address")+"\nVaccine Center : "+result.getString("center")+
+                    "\n1st Dose : "+result.getString("doseOneDate")+",  Vaccine : "+result.getString("doseOne")+
+                    "\n2nd Dose : "+result.getString("doseTwoDate")+",  Vaccine : "+result.getString("doseTwo")); 
+            
+            searchTF.setText("");
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Covid 19 Vaccination System");
+            alert.setHeaderText("Information Error");
+            alert.setContentText("Information is not found !!!!");
+            alert.showAndWait();
+            
+            searchTF.setText("");
+            infoLabel.setText("");
+            imageView.setImage(null);
         }
     }
 

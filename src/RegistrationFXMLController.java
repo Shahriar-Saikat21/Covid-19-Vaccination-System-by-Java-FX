@@ -129,13 +129,13 @@ public class RegistrationFXMLController implements Initializable {
         }             
         borderPane.setCenter(root);
     }
-    
-    Connection DBConnection = DataBaseConnection.connectDB();
+        
     String sendOTPBySystem = "";
     String nidNumForAllOp = "";
 
     @FXML
-    private void registrationSendOtpAction(ActionEvent event) throws Exception{       
+    private void registrationSendOtpAction(ActionEvent event) throws Exception{ 
+        Connection DBConnection = DataBaseConnection.connectDB();
         MonthConversion monthToNumeric = new MonthConversion();
         String month = monthToNumeric.monthNumeric(monthComboBox.getValue());
         
@@ -195,6 +195,7 @@ public class RegistrationFXMLController implements Initializable {
 
     @FXML
     private void completeRegistrationButton(ActionEvent event) throws Exception{
+        Connection DBConnection = DataBaseConnection.connectDB();
         String otpEnterByUser = otpTF.getText();
         if(otpEnterByUser.equals(sendOTPBySystem)&& otpEnterByUser!=""){
             
