@@ -2,12 +2,14 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import javafx.scene.control.Alert;
 
 
 public class PDFGenerator {
     
-    public void createPDF(String personalInfo,String nidNumber){
-        String fileName = "C:\\Users\\User\\Downloads\\Documents\\"+ nidNumber +"Vaccine-Card.pdf";
+    public void createPDF(String personalInfo,String fileNameType){
+        String fileTitle = fileNameType+".pdf";
+        String fileName = "C:\\Users\\User\\Downloads\\Documents\\" +fileTitle;
         Document document = new Document();
         document.setPageSize(PageSize.A4);
 
@@ -20,17 +22,7 @@ public class PDFGenerator {
             Paragraph paraOne = new Paragraph();
             paraOne.add(personalInfo);
             paraOne.setAlignment(Element.ALIGN_LEFT);            
-            document.add(paraOne);
-
-            Paragraph paraTwo = new Paragraph();
-            paraTwo.setAlignment(Element.ALIGN_LEFT);
-            paraTwo.add("\n\n1st Dose : \nVaccine : \nDate : \nAuthorised Signature : "); 
-            document.add(paraTwo);
-            
-            Paragraph paraThree = new Paragraph();
-            paraThree.setAlignment(Element.ALIGN_LEFT);
-            paraThree.add("\n\n2nd Dose : \nVaccine : \nDate : \nAuthorised Signature : "); 
-            document.add(paraThree);
+            document.add(paraOne);          
 
             Font f = new Font();
             f.setStyle(Font.BOLD);
@@ -39,7 +31,11 @@ public class PDFGenerator {
             document.close();
             
         } catch (Exception e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Covid 19 Vaccination System");
+            alert.setHeaderText("Error !!!");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
         }
     }
      

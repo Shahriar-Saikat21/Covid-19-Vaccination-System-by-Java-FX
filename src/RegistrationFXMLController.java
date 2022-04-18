@@ -158,7 +158,7 @@ public class RegistrationFXMLController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Covid 19 Vaccination System");
             alert.setHeaderText("Registration Error");
-            alert.setContentText("Invalid Information !!");
+            alert.setContentText("Information is not found !!");
             alert.showAndWait();
             
             sendOTPBySystem = "";
@@ -190,7 +190,8 @@ public class RegistrationFXMLController implements Initializable {
                 OTP mailOTP = new OTP(mail);
                 sendOTPBySystem = mailOTP.sendOTP(); 
             }           
-        }               
+        }
+        DBConnection.close();
     }
 
     @FXML
@@ -236,5 +237,6 @@ public class RegistrationFXMLController implements Initializable {
             monthComboBox.setValue("");
             yearComboBox.setValue("");
         }
+        DBConnection.close();
     }
 }

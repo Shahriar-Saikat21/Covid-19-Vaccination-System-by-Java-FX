@@ -41,7 +41,7 @@ public class CertificateFXMLController implements Initializable{
     String nidNumForAllOp = ""; 
     
     String detailInfo = "";
-    String nidNumber = "";
+    String nidNumberForCertificate = "";
 
     @FXML
     void certificateSendOtpBtnAction(ActionEvent event) throws Exception{
@@ -68,7 +68,7 @@ public class CertificateFXMLController implements Initializable{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Covid 19 Vaccination System");
             alert.setHeaderText("Download Error");
-            alert.setContentText("Invalid Information !!");
+            alert.setContentText("Information is not found !!");
             alert.showAndWait();
             
             sendOTPBySystem = "";
@@ -97,12 +97,12 @@ public class CertificateFXMLController implements Initializable{
                 comboBoxYear.setValue("");
                 
             }else{               
-                detailInfo = "Name : "+result.getString("firstName")+" "+result.getString("lastName")
+                detailInfo = "Vaccine Certificate\n\n"+"Name : "+result.getString("firstName")+" "+result.getString("lastName")
                         +"\nDate Of Birth : "+result.getString("dateOfBirth")+
                         "\nAddress : "+result.getString("address")+"\nGender : "+result.getString("gender")
                         +"\n\n1st Dose : "+result.getString("doseOne")+"\nDate: "+result.getString("doseOneDate")+
                         "\n\n2nd Dose : "+result.getString("doseTwo")+"\nDate: "+result.getString("doseTwoDate");
-                nidNumber = result.getString("nidNumber");
+                nidNumberForCertificate = nidTF.getText();
                 OTP mailOTP = new OTP(mail);
                 sendOTPBySystem = mailOTP.sendOTP(); 
                 System.out.println(sendOTPBySystem);
@@ -112,11 +112,12 @@ public class CertificateFXMLController implements Initializable{
 
     @FXML
     void sendCertificateBtnAction(ActionEvent event) {
+        String fileNameType = nidNumberForCertificate + "-Vaccine Certificate";
         String otpEnterByUser = otpTF.getText();
         if(otpEnterByUser.equals(sendOTPBySystem)&& otpEnterByUser!=""){
             
             PDFGenerator pdf = new PDFGenerator();
-            pdf.createPDF(detailInfo, nidNumber);
+            pdf.createPDF(detailInfo, fileNameType);
             
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Covid 19 Vaccination System");

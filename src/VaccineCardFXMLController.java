@@ -41,7 +41,7 @@ public class VaccineCardFXMLController implements Initializable{
     String nidNumForAllOp = ""; 
     
     String detailInfo = "";
-    String nidNumber = "";
+    String nidNumberForCard = "";
 
     @FXML
     void vaccineCardOtpBtnAction(ActionEvent event) throws Exception{
@@ -68,7 +68,7 @@ public class VaccineCardFXMLController implements Initializable{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Covid 19 Vaccination System");
             alert.setHeaderText("Download Error");
-            alert.setContentText("Invalid Information !!");
+            alert.setContentText("Information is not found !!");
             alert.showAndWait();
             
             sendOTPBySystem = "";
@@ -97,11 +97,12 @@ public class VaccineCardFXMLController implements Initializable{
                 comboboxyear.setValue("");
                 
             }else{               
-                detailInfo = "Name : "+result.getString("firstName")+" "+result.getString("lastName")
+                detailInfo = "Vaccine Card\n\n"+"Name : "+result.getString("firstName")+" "+result.getString("lastName")
                         +"\nDate Of Birth : "+result.getString("dateOfBirth")+
                         "\nAddress : "+result.getString("address")+"\nGender : "+result.getString("gender")+
-                        "\n\nVaccine Center : "+result.getString("center");
-                nidNumber = result.getString("nidNumber");
+                        "\n\nVaccine Center : "+result.getString("center")+"\n\n1st Dose : \nVaccine : \nDate : \nAuthorised Signature : "+
+                        "\n\n2nd Dose : \nVaccine : \nDate : \nAuthorised Signature : ";
+                nidNumberForCard = nidTF.getText();
                 OTP mailOTP = new OTP(mail);
                 sendOTPBySystem = mailOTP.sendOTP(); 
                 System.out.println(sendOTPBySystem);
@@ -111,11 +112,12 @@ public class VaccineCardFXMLController implements Initializable{
     
     @FXML
     void sendVaccineCardbtnAction(ActionEvent event) throws Exception{
+        String fileNameType = nidNumberForCard + "-Vaccine Card";
         String otpEnterByUser = otpTF.getText();
         if(otpEnterByUser.equals(sendOTPBySystem)&& otpEnterByUser!=""){
             
             PDFGenerator pdf = new PDFGenerator();
-            pdf.createPDF(detailInfo, nidNumber);
+            pdf.createPDF(detailInfo,fileNameType);
             
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Covid 19 Vaccination System");
@@ -135,7 +137,7 @@ public class VaccineCardFXMLController implements Initializable{
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Covid 19 Vaccination System");
-            alert.setHeaderText("Registration Error");
+            alert.setHeaderText("Download Error");
             alert.setContentText("Invalid OTP !!");
             alert.showAndWait();
             

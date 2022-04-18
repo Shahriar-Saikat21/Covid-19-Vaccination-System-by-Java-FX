@@ -105,6 +105,7 @@ public class AdminPanelFxmlController implements Initializable {
             infoLabel.setText("");
             imageView.setImage(null);
         }
+        DBConnection.close();
     }
 
     @FXML
