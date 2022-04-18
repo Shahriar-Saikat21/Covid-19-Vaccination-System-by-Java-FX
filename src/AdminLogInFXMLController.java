@@ -79,6 +79,7 @@ public class AdminLogInFXMLController implements Initializable{
             otpSentByMail = otpgenerate.sendOTP();
             System.out.println(otpSentByMail);
         }
+        DBConnection.close();
     }
 
     @FXML

@@ -108,6 +108,7 @@ public class CertificateFXMLController implements Initializable{
                 System.out.println(sendOTPBySystem);
             }
         }
+        DBConnection.close();
     }
 
     @FXML

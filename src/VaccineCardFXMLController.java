@@ -108,6 +108,7 @@ public class VaccineCardFXMLController implements Initializable{
                 System.out.println(sendOTPBySystem);
             }
         }
+        DBConnection.close();
     }
     
     @FXML
