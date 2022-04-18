@@ -23,7 +23,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </TextField>
-            <Button fx:id="searchButton" layoutX="312.0" layoutY="28.0" mnemonicParsing="false" onAction="#adminSearchBtnAction" style="-fx-background-color: #ffffff;" text="Search" textFill="#39b54a">
+            <Button fx:id="searchButton" layoutX="312.0" layoutY="28.0" mnemonicParsing="false" onAction="#adminSearchBtnAction" text="Search" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -67,7 +67,7 @@
                </font>
             </Label>
             <DatePicker fx:id="datePickerTwo" promptText="Enter Date" />
-            <Button fx:id="updateButton" mnemonicParsing="false" onAction="#adminUpdateBtnAction" style="-fx-background-color: #39b54a;" text="Update" textFill="WHITE">
+            <Button fx:id="updateButton" mnemonicParsing="false" onAction="#adminUpdateBtnAction" text="Update" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

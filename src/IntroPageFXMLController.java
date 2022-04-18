@@ -33,7 +33,7 @@ public class IntroPageFXMLController implements Initializable {
         stage.setScene(registrationScene);
         Image appLogo = new Image("image/AppLogo.png");
         stage.getIcons().add(appLogo);
-        stage.setTitle("Registration Page");
+        stage.setTitle("User Page");
         registrationScene.getStylesheets().add(getClass().getResource("registrationPageStyle.css").toExternalForm());
         stage.show();
     }
@@ -48,6 +48,7 @@ public class IntroPageFXMLController implements Initializable {
         Image appLogo = new Image("image/AppLogo.png");
         stage.getIcons().add(appLogo);
         stage.setTitle("Admin Log In Page");
+        adminLogInScene.getStylesheets().add(getClass().getResource("adminLogInPageStyle.css").toExternalForm());
         stage.show();        
     }   
 }

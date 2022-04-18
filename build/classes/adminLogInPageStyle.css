@@ -1,0 +1,25 @@
+#otpButton{
+    -fx-background-color:#ffffff;
+    -fx-text-fill:#39b54a;
+}
+#otpButton:hover{
+    -fx-background-color:#00C897;
+    -fx-text-fill:#ffffff;
+}
+
+#logInButton{
+    -fx-background-color:#ffffff;
+    -fx-text-fill:#39b54a;
+}
+#logInButton:hover{
+    -fx-background-color:#00C897;
+    -fx-text-fill:#ffffff;
+}
+
+#adminLogInBackButton{
+    -fx-background-color: #FFD365;
+    -fx-text-fill:#39b54a;
+}
+#adminLogInBackButton:hover{
+    -fx-background-color:#ffffff;
+}
