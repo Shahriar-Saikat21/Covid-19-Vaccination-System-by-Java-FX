@@ -64,9 +64,9 @@ public class RegistrationFXMLController implements Initializable {
         registrationBtn.setStyle("-fx-background-color: #00C897;");
         dayComboBox.getItems().addAll("01","02","03","04","05","06","07","08",
                 "09","10","11","12","13","14","15","16","17","18","19","20",
-                "21","22","23","24","25","26","27","28","29","30","31");
+                "21","22","23","24","25","26","27","28","29","30","31","Date");
         monthComboBox.getItems().addAll("January","February","March","April",
-                "May","June","July","August","September","October","November","December");
+                "May","June","July","August","September","October","November","December","Month");
         yearComboBox.getItems().addAll("2022","2021","2020","2019","2018","2017","2016","2015",
                 "2014","2013","2012","2011","2010","2009","2008","2007","2006","2005","2004","2003"
                 ,"2002","2001","2000","1999","1998","1997","1996","1995","1994","1993","1992",
@@ -76,7 +76,7 @@ public class RegistrationFXMLController implements Initializable {
                 "1962","1961","1960","1959","1958","1957","1956","1955","1954","1953","1952",
                 "1951","1950","1949","1948","1947","1946","1945","1944","1943","1942","1941",
                 "1940","1939","1938","1937","1936","1935","1934","1933","1933","1932","1931",
-                "1930","1929","1928","1927","1926","1925","1924","1923","1922","1921","1920");
+                "1930","1929","1928","1927","1926","1925","1924","1923","1922","1921","1920","Year");
     }   
     
     @FXML
@@ -134,109 +134,151 @@ public class RegistrationFXMLController implements Initializable {
     String nidNumForAllOp = "";
 
     @FXML
-    private void registrationSendOtpAction(ActionEvent event) throws Exception{ 
-        Connection DBConnection = DataBaseConnection.connectDB();
-        MonthConversion monthToNumeric = new MonthConversion();
-        String month = monthToNumeric.monthNumeric(monthComboBox.getValue());
-        
-        String nidNumber = nidTF.getText();
-        nidNumForAllOp = nidNumber;
-        String mail = mailTF.getText();
-       
-        String dateOfBirth = yearComboBox.getValue()+"-"+month+"-"+dayComboBox.getValue();
-        
-        
-        String query = "select firstName,register from nidInfo,vaccineInfo "
-                + "where nidInfo.nidNumber=BINARY ? and vaccineInfo.nidNumber = BINARY ? and nidInfo.dateOfBirth = BINARY ?";
-        PreparedStatement statement = DBConnection.prepareStatement(query);
-        statement.setString(1, nidNumber);
-        statement.setString(2, nidNumber);
-        statement.setString(3, dateOfBirth);
-        ResultSet result = statement.executeQuery();
-        
-        if(result.next()==false){
+    private void registrationSendOtpAction(ActionEvent event) { 
+        try {
+            Connection DBConnection = DataBaseConnection.connectDB();
+            MonthConversion monthToNumeric = new MonthConversion();
+            String month = monthToNumeric.monthNumeric(monthComboBox.getValue());
+
+            String nidNumber = nidTF.getText();
+            nidNumForAllOp = nidNumber;
+            String mail = mailTF.getText();
+
+            String year = yearComboBox.getValue();
+            String date = dayComboBox.getValue();
+
+            if(year.equals("Year")){
+                year = "1920";
+            }
+            if(date.equals("Date")){
+                date = "01";
+            }
+
+            String dateOfBirth = year+"-"+month+"-"+date;
+
+
+            String query = "select firstName,register from nidInfo,vaccineInfo "
+                    + "where nidInfo.nidNumber=BINARY ? and vaccineInfo.nidNumber = BINARY ? and nidInfo.dateOfBirth = BINARY ?";
+            PreparedStatement statement = DBConnection.prepareStatement(query);
+            statement.setString(1, nidNumber);
+            statement.setString(2, nidNumber);
+            statement.setString(3, dateOfBirth);
+            ResultSet result = statement.executeQuery();
+
+            if(result.next()==false){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Covid 19 Vaccination System");
+                alert.setHeaderText("Registration Error");
+                alert.setContentText("Information is not found !!");
+                alert.showAndWait();
+
+                sendOTPBySystem = "";
+                nidNumForAllOp = "";
+                nidTF.setText("");
+                mailTF.setText("");
+                dayComboBox.setValue("Date");
+                monthComboBox.setValue("Month");
+                yearComboBox.setValue("Year");
+
+            }else{
+                if(result.getString("register").equals("YES")){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Covid 19 Vaccination System");
+                    alert.setHeaderText("Registration Information : ");
+                    alert.setContentText("Already Registered !!");
+                    alert.showAndWait();
+
+                    sendOTPBySystem = "";
+                    nidNumForAllOp = "";
+                    nidTF.setText("");
+                    mailTF.setText("");
+                    otpTF.setText("");
+                    dayComboBox.setValue("Date");
+                    monthComboBox.setValue("Month");
+                    yearComboBox.setValue("Year");
+
+                }else{
+                    OTP mailOTP = new OTP(mail);
+                    sendOTPBySystem = mailOTP.sendOTP(); 
+                }           
+            }
+            DBConnection.close();
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Covid 19 Vaccination System");
-            alert.setHeaderText("Registration Error");
-            alert.setContentText("Information is not found !!");
+            alert.setHeaderText("Error !!!");
+            alert.setContentText("Invalid Information");
             alert.showAndWait();
-            
             sendOTPBySystem = "";
             nidNumForAllOp = "";
             nidTF.setText("");
             mailTF.setText("");
-            dayComboBox.setValue("");
-            monthComboBox.setValue("");
-            yearComboBox.setValue("");
-            
-        }else{
-            if(result.getString("register").equals("YES")){
+            otpTF.setText("");
+            dayComboBox.setValue("Date");
+            monthComboBox.setValue("Month");
+            yearComboBox.setValue("Year");
+        }
+    }
+
+    @FXML
+    private void completeRegistrationButton(ActionEvent event){
+        try {
+            Connection DBConnection = DataBaseConnection.connectDB();
+            String otpEnterByUser = otpTF.getText();
+            if(otpEnterByUser.equals(sendOTPBySystem)&& otpEnterByUser!=""){
+
+                String query = "UPDATE vaccineInfo SET register = 'YES' WHERE nidNumber = BINARY ?";
+                PreparedStatement statement = DBConnection.prepareStatement(query);
+                statement.setString(1, nidNumForAllOp); 
+
+                statement.executeUpdate();
+
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Covid 19 Vaccination System");
                 alert.setHeaderText("Registration Information : ");
-                alert.setContentText("Already Registered !!");
+                alert.setContentText("Registration is successfull\nPlease Download Your Vaccine Card");
                 alert.showAndWait();
-            
+
                 sendOTPBySystem = "";
                 nidNumForAllOp = "";
                 nidTF.setText("");
                 mailTF.setText("");
                 otpTF.setText("");
-                dayComboBox.setValue("");
-                monthComboBox.setValue("");
-                yearComboBox.setValue("");
-                
-            }else{
-                OTP mailOTP = new OTP(mail);
-                sendOTPBySystem = mailOTP.sendOTP(); 
-            }           
-        }
-        DBConnection.close();
-    }
+                dayComboBox.setValue("Date");
+                monthComboBox.setValue("Month");
+                yearComboBox.setValue("Year");
 
-    @FXML
-    private void completeRegistrationButton(ActionEvent event) throws Exception{
-        Connection DBConnection = DataBaseConnection.connectDB();
-        String otpEnterByUser = otpTF.getText();
-        if(otpEnterByUser.equals(sendOTPBySystem)&& otpEnterByUser!=""){
-            
-            String query = "UPDATE vaccineInfo SET register = 'YES' WHERE nidNumber = BINARY ?";
-            PreparedStatement statement = DBConnection.prepareStatement(query);
-            statement.setString(1, nidNumForAllOp); 
-            
-            statement.executeUpdate();
-            
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Covid 19 Vaccination System");
+                alert.setHeaderText("Registration Error");
+                alert.setContentText("Invalid OTP !!");
+                alert.showAndWait();
+
+                sendOTPBySystem = "";
+                nidNumForAllOp="";
+                nidTF.setText("");
+                mailTF.setText("");
+                otpTF.setText("");
+                dayComboBox.setValue("Date");
+                monthComboBox.setValue("Month");
+                yearComboBox.setValue("Year");
+            }
+            DBConnection.close();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Covid 19 Vaccination System");
-            alert.setHeaderText("Registration Information : ");
-            alert.setContentText("Registration is successfull\nPlease Download Your Vaccine Card");
+            alert.setHeaderText("Error !!!");
+            alert.setContentText("Invalid Information");
             alert.showAndWait();
-            
             sendOTPBySystem = "";
             nidNumForAllOp = "";
             nidTF.setText("");
             mailTF.setText("");
             otpTF.setText("");
-            dayComboBox.setValue("");
-            monthComboBox.setValue("");
-            yearComboBox.setValue("");
-
-        }else{
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Covid 19 Vaccination System");
-            alert.setHeaderText("Registration Error");
-            alert.setContentText("Invalid OTP !!");
-            alert.showAndWait();
-            
-            sendOTPBySystem = "";
-            nidNumForAllOp="";
-            nidTF.setText("");
-            mailTF.setText("");
-            otpTF.setText("");
-            dayComboBox.setValue("");
-            monthComboBox.setValue("");
-            yearComboBox.setValue("");
+            dayComboBox.setValue("Date");
+            monthComboBox.setValue("Month");
+            yearComboBox.setValue("Year");
         }
-        DBConnection.close();
     }
 }

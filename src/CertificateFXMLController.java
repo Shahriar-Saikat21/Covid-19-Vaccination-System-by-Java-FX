@@ -44,71 +44,97 @@ public class CertificateFXMLController implements Initializable{
     String nidNumberForCertificate = "";
 
     @FXML
-    void certificateSendOtpBtnAction(ActionEvent event) throws Exception{
-        Connection DBConnection = DataBaseConnection.connectDB();
-        MonthConversion monthToNumeric = new MonthConversion();
-        String month = monthToNumeric.monthNumeric(comboBoxMonth.getValue());
-        
-        String nidNumber = nidTF.getText();
-        nidNumForAllOp = nidNumber;
-        String mail = mailTF.getText();
-       
-        String dateOfBirth = comboBoxYear.getValue()+"-"+month+"-"+comboBoxDate.getValue();
-        
-        
-        String query = "select * from nidInfo,vaccineInfo "
-                + "where nidInfo.nidNumber=BINARY ? and vaccineInfo.nidNumber = BINARY ? and nidInfo.dateOfBirth = BINARY ?";
-        PreparedStatement statement = DBConnection.prepareStatement(query);
-        statement.setString(1, nidNumber);
-        statement.setString(2, nidNumber);
-        statement.setString(3, dateOfBirth);
-        ResultSet result = statement.executeQuery();
-        
-        if(result.next()==false){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Covid 19 Vaccination System");
-            alert.setHeaderText("Download Error");
-            alert.setContentText("Information is not found !!");
-            alert.showAndWait();
-            
-            sendOTPBySystem = "";
-            nidNumForAllOp = "";
-            nidTF.setText("");
-            mailTF.setText("");
-            comboBoxDate.setValue("");
-            comboBoxMonth.setValue("");
-            comboBoxYear.setValue("");
-            
-        }else{
-            if(result.getString("register").equals("NO")){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    void certificateSendOtpBtnAction(ActionEvent event) {
+        try {
+            Connection DBConnection = DataBaseConnection.connectDB();
+            MonthConversion monthToNumeric = new MonthConversion();
+            String month = monthToNumeric.monthNumeric(comboBoxMonth.getValue());
+
+            String nidNumber = nidTF.getText();
+            nidNumForAllOp = nidNumber;
+            String mail = mailTF.getText();
+
+            String year = comboBoxYear.getValue();
+            String date = comboBoxDate.getValue();
+
+            if(year.equals("Year")){
+                year = "1920";
+            }
+            if(date.equals("Date")){
+                date = "01";
+            }
+
+            String dateOfBirth = year+"-"+month+"-"+date;
+
+
+            String query = "select * from nidInfo,vaccineInfo "
+                    + "where nidInfo.nidNumber=BINARY ? and vaccineInfo.nidNumber = BINARY ? and nidInfo.dateOfBirth = BINARY ?";
+            PreparedStatement statement = DBConnection.prepareStatement(query);
+            statement.setString(1, nidNumber);
+            statement.setString(2, nidNumber);
+            statement.setString(3, dateOfBirth);
+            ResultSet result = statement.executeQuery();
+
+            if(result.next()==false){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Covid 19 Vaccination System");
-                alert.setHeaderText("Download Information : ");
-                alert.setContentText("Unregisted ID !!");
+                alert.setHeaderText("Download Error");
+                alert.setContentText("Information is not found !!");
                 alert.showAndWait();
-            
+
                 sendOTPBySystem = "";
                 nidNumForAllOp = "";
                 nidTF.setText("");
                 mailTF.setText("");
-                otpTF.setText("");
-                comboBoxDate.setValue("");
-                comboBoxMonth.setValue("");
-                comboBoxYear.setValue("");
-                
-            }else{               
-                detailInfo = "Vaccine Certificate\n\n"+"Name : "+result.getString("firstName")+" "+result.getString("lastName")
-                        +"\nDate Of Birth : "+result.getString("dateOfBirth")+
-                        "\nAddress : "+result.getString("address")+"\nGender : "+result.getString("gender")
-                        +"\n\n1st Dose : "+result.getString("doseOne")+"\nDate: "+result.getString("doseOneDate")+
-                        "\n\n2nd Dose : "+result.getString("doseTwo")+"\nDate: "+result.getString("doseTwoDate");
-                nidNumberForCertificate = nidTF.getText();
-                OTP mailOTP = new OTP(mail);
-                sendOTPBySystem = mailOTP.sendOTP(); 
-                System.out.println(sendOTPBySystem);
+                comboBoxDate.setValue("Date");
+                comboBoxMonth.setValue("Month");
+                comboBoxYear.setValue("Year");
+
+            }else{
+                if(result.getString("register").equals("NO")){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Covid 19 Vaccination System");
+                    alert.setHeaderText("Download Information : ");
+                    alert.setContentText("Unregisted ID !!");
+                    alert.showAndWait();
+
+                    sendOTPBySystem = "";
+                    nidNumForAllOp = "";
+                    nidTF.setText("");
+                    mailTF.setText("");
+                    otpTF.setText("");
+                    comboBoxDate.setValue("Date");
+                    comboBoxMonth.setValue("Month");
+                    comboBoxYear.setValue("Year");
+
+                }else{               
+                    detailInfo = "Vaccine Certificate\n\n"+"Name : "+result.getString("firstName")+" "+result.getString("lastName")
+                            +"\nDate Of Birth : "+result.getString("dateOfBirth")+
+                            "\nAddress : "+result.getString("address")+"\nGender : "+result.getString("gender")
+                            +"\n\n1st Dose : "+result.getString("doseOne")+"\nDate: "+result.getString("doseOneDate")+
+                            "\n\n2nd Dose : "+result.getString("doseTwo")+"\nDate: "+result.getString("doseTwoDate");
+                    nidNumberForCertificate = nidTF.getText();
+                    OTP mailOTP = new OTP(mail);
+                    sendOTPBySystem = mailOTP.sendOTP(); 
+                    System.out.println(sendOTPBySystem);
+                }
+                DBConnection.close();
             }
-        }
-        DBConnection.close();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Covid 19 Vaccination System");
+            alert.setHeaderText("Error !!!");
+            alert.setContentText("Invalid Information");
+            alert.showAndWait();
+            sendOTPBySystem = "";
+            nidNumForAllOp = "";
+            nidTF.setText("");
+            mailTF.setText("");
+            otpTF.setText("");
+            comboBoxDate.setValue("Date");
+            comboBoxMonth.setValue("Month");
+            comboBoxYear.setValue("Year");
+        }             
     }
 
     @FXML
@@ -131,9 +157,9 @@ public class CertificateFXMLController implements Initializable{
             nidTF.setText("");
             mailTF.setText("");
             otpTF.setText("");
-            comboBoxDate.setValue("");
-            comboBoxMonth.setValue("");
-            comboBoxYear.setValue("");
+            comboBoxDate.setValue("Date");
+            comboBoxMonth.setValue("Month");
+            comboBoxYear.setValue("Year");
 
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -147,9 +173,9 @@ public class CertificateFXMLController implements Initializable{
             nidTF.setText("");
             mailTF.setText("");
             otpTF.setText("");
-            comboBoxDate.setValue("");
-            comboBoxMonth.setValue("");
-            comboBoxYear.setValue("");
+            comboBoxDate.setValue("Date");
+            comboBoxMonth.setValue("Month");
+            comboBoxYear.setValue("Year");
         }
     }
 
@@ -158,9 +184,9 @@ public class CertificateFXMLController implements Initializable{
     public void initialize(URL url, ResourceBundle rb) {
         comboBoxDate.getItems().addAll("01","02","03","04","05","06","07","08","09","10",
                 "11","12","13","14","15","16","17","18","19","20","21","22","23","24",
-                "25","26","27","28","29","30","31");
+                "25","26","27","28","29","30","31","Date");
         comboBoxMonth.getItems().addAll("January","February","March","April","May",
-                "June","July","August","September","October","November","December");
+                "June","July","August","September","October","November","December","Month");
         comboBoxYear.getItems().addAll("2022","2021","2020","2019","2018","2017","2016",
                 "2015","2014","2013","2012","2011","2010","2009","2008","2007",
                 "2006","2005","2004","2003","2002","2001","2000","1999","1998","1997",
@@ -171,7 +197,7 @@ public class CertificateFXMLController implements Initializable{
                 "1956","1955","1954","1953","1952","1951","1950","1949","1948","1947",
                 "1946","1945","1944","1943","1942","1941","1940","1939","1938","1937",
                 "1936","1935","1934","1933","1933","1932","1931","1930","1929","1928",
-                "1927","1926","1925","1924","1923","1922","1921","1920");
+                "1927","1926","1925","1924","1923","1922","1921","1920","Year");
 
     }
 

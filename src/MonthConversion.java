@@ -26,6 +26,8 @@ public class MonthConversion {
             month = "11";
          }else if(monthString.equals("December")){
             month = "12";
+         }else{
+             month = "0";
          }
          return month;
      }       
