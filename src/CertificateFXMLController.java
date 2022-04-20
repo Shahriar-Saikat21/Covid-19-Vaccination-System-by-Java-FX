@@ -54,17 +54,7 @@ public class CertificateFXMLController implements Initializable{
             nidNumForAllOp = nidNumber;
             String mail = mailTF.getText();
 
-            String year = comboBoxYear.getValue();
-            String date = comboBoxDate.getValue();
-
-            if(year.equals("Year")){
-                year = "1920";
-            }
-            if(date.equals("Date")){
-                date = "01";
-            }
-
-            String dateOfBirth = year+"-"+month+"-"+date;
+            String dateOfBirth = comboBoxYear.getValue()+"-"+month+"-"+comboBoxDate.getValue();
 
 
             String query = "select * from nidInfo,vaccineInfo "

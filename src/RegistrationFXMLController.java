@@ -144,17 +144,7 @@ public class RegistrationFXMLController implements Initializable {
             nidNumForAllOp = nidNumber;
             String mail = mailTF.getText();
 
-            String year = yearComboBox.getValue();
-            String date = dayComboBox.getValue();
-
-            if(year.equals("Year")){
-                year = "1920";
-            }
-            if(date.equals("Date")){
-                date = "01";
-            }
-
-            String dateOfBirth = year+"-"+month+"-"+date;
+            String dateOfBirth = yearComboBox.getValue()+"-"+month+"-"+dayComboBox.getValue();
 
 
             String query = "select firstName,register from nidInfo,vaccineInfo "

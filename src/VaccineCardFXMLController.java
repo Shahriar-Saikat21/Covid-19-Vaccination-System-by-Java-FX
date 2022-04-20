@@ -54,17 +54,7 @@ public class VaccineCardFXMLController implements Initializable{
             nidNumForAllOp = nidNumber;
             String mail = mailTF.getText();
 
-            String year = comboboxyear.getValue();
-            String date = comboboxdate.getValue();
-
-            if(year.equals("Year")){
-                year = "1920";
-            }
-            if(date.equals("Date")){
-                date = "01";
-            }
-
-            String dateOfBirth = year+"-"+month+"-"+date;
+            String dateOfBirth = comboboxyear.getValue()+"-"+month+"-"+comboboxdate.getValue();
 
 
             String query = "select * from nidInfo,vaccineInfo "
