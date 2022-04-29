@@ -42,6 +42,7 @@ public class CertificateFXMLController implements Initializable{
     
     String detailInfo = "";
     String nidNumberForCertificate = "";
+    String mail = "";
 
     @FXML
     void certificateSendOtpBtnAction(ActionEvent event) {
@@ -52,7 +53,7 @@ public class CertificateFXMLController implements Initializable{
 
             String nidNumber = nidTF.getText();
             nidNumForAllOp = nidNumber;
-            String mail = mailTF.getText();
+            mail = mailTF.getText();
 
             String dateOfBirth = comboBoxYear.getValue()+"-"+month+"-"+comboBoxDate.getValue();
 
@@ -74,6 +75,7 @@ public class CertificateFXMLController implements Initializable{
 
                 sendOTPBySystem = "";
                 nidNumForAllOp = "";
+                mail = "";
                 nidTF.setText("");
                 mailTF.setText("");
                 comboBoxDate.setValue("Date");
@@ -90,6 +92,7 @@ public class CertificateFXMLController implements Initializable{
 
                     sendOTPBySystem = "";
                     nidNumForAllOp = "";
+                    mail = "";
                     nidTF.setText("");
                     mailTF.setText("");
                     otpTF.setText("");
@@ -118,6 +121,7 @@ public class CertificateFXMLController implements Initializable{
             alert.showAndWait();
             sendOTPBySystem = "";
             nidNumForAllOp = "";
+            mail = "";
             nidTF.setText("");
             mailTF.setText("");
             otpTF.setText("");
@@ -136,6 +140,9 @@ public class CertificateFXMLController implements Initializable{
             PDFGenerator pdf = new PDFGenerator();
             pdf.createPDF(detailInfo, fileNameType);
             
+            OTP sendCardToMail = new OTP(mail);
+            sendCardToMail.sendAttachment(nidNumberForCertificate,2);
+            
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Covid 19 Vaccination System");
             alert.setHeaderText("Download Information : ");
@@ -144,6 +151,7 @@ public class CertificateFXMLController implements Initializable{
             
             sendOTPBySystem = "";
             nidNumForAllOp = "";
+            mail = "";
             nidTF.setText("");
             mailTF.setText("");
             otpTF.setText("");
@@ -160,6 +168,7 @@ public class CertificateFXMLController implements Initializable{
             
             sendOTPBySystem = "";
             nidNumForAllOp="";
+            mail = "";
             nidTF.setText("");
             mailTF.setText("");
             otpTF.setText("");

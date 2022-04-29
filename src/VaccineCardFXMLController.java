@@ -42,6 +42,7 @@ public class VaccineCardFXMLController implements Initializable{
     
     String detailInfo = "";
     String nidNumberForCard = "";
+    String mail = "";
 
     @FXML
     void vaccineCardOtpBtnAction(ActionEvent event){
@@ -52,7 +53,7 @@ public class VaccineCardFXMLController implements Initializable{
 
             String nidNumber = nidTF.getText();       
             nidNumForAllOp = nidNumber;
-            String mail = mailTF.getText();
+            mail = mailTF.getText();
 
             String dateOfBirth = comboboxyear.getValue()+"-"+month+"-"+comboboxdate.getValue();
 
@@ -74,6 +75,7 @@ public class VaccineCardFXMLController implements Initializable{
 
                 sendOTPBySystem = "";
                 nidNumForAllOp = "";
+                mail = "";
                 nidTF.setText("");
                 mailTF.setText("");
                 comboboxdate.setValue("Date");
@@ -90,6 +92,7 @@ public class VaccineCardFXMLController implements Initializable{
 
                     sendOTPBySystem = "";
                     nidNumForAllOp = "";
+                    mail = "";
                     nidTF.setText("");
                     mailTF.setText("");
                     otpTF.setText("");
@@ -118,6 +121,7 @@ public class VaccineCardFXMLController implements Initializable{
             alert.showAndWait();
             sendOTPBySystem = "";
             nidNumForAllOp = "";
+            mail = "";
             nidTF.setText("");
             mailTF.setText("");
             otpTF.setText("");
@@ -136,6 +140,9 @@ public class VaccineCardFXMLController implements Initializable{
 
                 PDFGenerator pdf = new PDFGenerator();
                 pdf.createPDF(detailInfo,fileNameType);
+                
+                OTP sendCardToMail = new OTP(mail);
+                sendCardToMail.sendAttachment(nidNumberForCard,1);
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Covid 19 Vaccination System");
@@ -145,6 +152,7 @@ public class VaccineCardFXMLController implements Initializable{
 
                 sendOTPBySystem = "";
                 nidNumForAllOp = "";
+                mail = "";
                 nidTF.setText("");
                 mailTF.setText("");
                 otpTF.setText("");
@@ -161,6 +169,7 @@ public class VaccineCardFXMLController implements Initializable{
 
                 sendOTPBySystem = "";
                 nidNumForAllOp="";
+                mail = "";
                 nidTF.setText("");
                 mailTF.setText("");
                 otpTF.setText("");
@@ -177,6 +186,7 @@ public class VaccineCardFXMLController implements Initializable{
 
                 sendOTPBySystem = "";
                 nidNumForAllOp="";
+                mail = "";
                 nidTF.setText("");
                 mailTF.setText("");
                 otpTF.setText("");
