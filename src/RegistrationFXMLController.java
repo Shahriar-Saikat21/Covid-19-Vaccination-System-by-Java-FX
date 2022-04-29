@@ -56,6 +56,8 @@ public class RegistrationFXMLController implements Initializable {
     private ComboBox<String> monthComboBox;
     @FXML
     private ComboBox<String> yearComboBox;
+    @FXML
+    private ComboBox<String> vaccineCenterBox;
 
     
     @Override
@@ -77,6 +79,11 @@ public class RegistrationFXMLController implements Initializable {
                 "1951","1950","1949","1948","1947","1946","1945","1944","1943","1942","1941",
                 "1940","1939","1938","1937","1936","1935","1934","1933","1933","1932","1931",
                 "1930","1929","1928","1927","1926","1925","1924","1923","1922","1921","1920","Year");
+    
+        vaccineCenterBox.getItems().addAll("Vaccine Center - Dhaka","Vaccine Center - Chittagong",
+                "Vaccine Center - Sylhet","Vaccine Center - Khulna","Vaccine Center - Rajshahi",
+                "Vaccine Center - Borishal","Vaccine Center - Rongpur","Vaccine Center - Mymensigh",
+                "Vaccine Center");
     }   
     
     @FXML
@@ -123,7 +130,7 @@ public class RegistrationFXMLController implements Initializable {
     private void loadPage(String pageName){
         Parent root = null;
         try{
-        root = FXMLLoader.load(getClass().getResource(pageName+".fxml"));
+            root = FXMLLoader.load(getClass().getResource(pageName+".fxml"));
         }catch(Exception e){
             e.printStackTrace();
         }             
@@ -132,6 +139,7 @@ public class RegistrationFXMLController implements Initializable {
         
     String sendOTPBySystem = "";
     String nidNumForAllOp = "";
+    String vaccineCenterName = "";
 
     @FXML
     private void registrationSendOtpAction(ActionEvent event) { 
@@ -145,6 +153,7 @@ public class RegistrationFXMLController implements Initializable {
             String mail = mailTF.getText();
 
             String dateOfBirth = yearComboBox.getValue()+"-"+month+"-"+dayComboBox.getValue();
+            vaccineCenterName = vaccineCenterBox.getValue();
 
 
             String query = "select firstName,register from nidInfo,vaccineInfo "
@@ -166,9 +175,11 @@ public class RegistrationFXMLController implements Initializable {
                 nidNumForAllOp = "";
                 nidTF.setText("");
                 mailTF.setText("");
+                vaccineCenterName = "";
                 dayComboBox.setValue("Date");
                 monthComboBox.setValue("Month");
                 yearComboBox.setValue("Year");
+                vaccineCenterBox.setValue("Vaccine Center");
 
             }else{
                 if(result.getString("register").equals("YES")){
@@ -183,10 +194,29 @@ public class RegistrationFXMLController implements Initializable {
                     nidTF.setText("");
                     mailTF.setText("");
                     otpTF.setText("");
+                    vaccineCenterName = "";
                     dayComboBox.setValue("Date");
                     monthComboBox.setValue("Month");
                     yearComboBox.setValue("Year");
+                    vaccineCenterBox.setValue("Vaccine Center");
 
+                }else if(vaccineCenterName.equals("Vaccine Center")){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Covid 19 Vaccination System");
+                    alert.setHeaderText("Error !! ");
+                    alert.setContentText("Please Select Vaccine Center");
+                    alert.showAndWait();
+
+                    sendOTPBySystem = "";
+                    nidNumForAllOp = "";
+                    nidTF.setText("");
+                    mailTF.setText("");
+                    otpTF.setText("");
+                    vaccineCenterName = "";
+                    dayComboBox.setValue("Date");
+                    monthComboBox.setValue("Month");
+                    yearComboBox.setValue("Year");
+                    vaccineCenterBox.setValue("Vaccine Center");
                 }else{
                     OTP mailOTP = new OTP(mail);
                     sendOTPBySystem = mailOTP.sendOTP(); 
@@ -204,9 +234,11 @@ public class RegistrationFXMLController implements Initializable {
             nidTF.setText("");
             mailTF.setText("");
             otpTF.setText("");
+            vaccineCenterName = "";
             dayComboBox.setValue("Date");
             monthComboBox.setValue("Month");
             yearComboBox.setValue("Year");
+            vaccineCenterBox.setValue("Vaccine Center");
         }
     }
 
@@ -217,9 +249,10 @@ public class RegistrationFXMLController implements Initializable {
             String otpEnterByUser = otpTF.getText();
             if(otpEnterByUser.equals(sendOTPBySystem)&& otpEnterByUser!=""){
 
-                String query = "UPDATE vaccineInfo SET register = 'YES' WHERE nidNumber = BINARY ?";
+                String query = "UPDATE vaccineInfo SET register = 'YES', center = ? WHERE nidNumber = BINARY ?";
                 PreparedStatement statement = DBConnection.prepareStatement(query);
-                statement.setString(1, nidNumForAllOp); 
+                statement.setString(1, vaccineCenterName); 
+                statement.setString(2, nidNumForAllOp); 
 
                 statement.executeUpdate();
 
@@ -237,6 +270,7 @@ public class RegistrationFXMLController implements Initializable {
                 dayComboBox.setValue("Date");
                 monthComboBox.setValue("Month");
                 yearComboBox.setValue("Year");
+                vaccineCenterBox.setValue("Vaccine Center");
 
             }else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -253,6 +287,7 @@ public class RegistrationFXMLController implements Initializable {
                 dayComboBox.setValue("Date");
                 monthComboBox.setValue("Month");
                 yearComboBox.setValue("Year");
+                vaccineCenterBox.setValue("Vaccine Center");
             }
             DBConnection.close();
         } catch (Exception e) {
@@ -269,6 +304,7 @@ public class RegistrationFXMLController implements Initializable {
             dayComboBox.setValue("Date");
             monthComboBox.setValue("Month");
             yearComboBox.setValue("Year");
+            vaccineCenterBox.setValue("Vaccine Center");
         }
     }
 }

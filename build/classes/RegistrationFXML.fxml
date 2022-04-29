@@ -131,13 +131,19 @@
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <HBox prefHeight="33.0" prefWidth="344.0" spacing="10.0">
                                        <children>
                                           <ComboBox fx:id="dayComboBox" prefWidth="150.0" promptText="Date" />
                                           <ComboBox fx:id="monthComboBox" prefWidth="150.0" promptText="Month" />
                                           <ComboBox fx:id="yearComboBox" prefWidth="150.0" promptText="Year" />
                                        </children>
                                     </HBox>
+                                    <Label text="Vaccine Center">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="vaccineCenterBox" prefHeight="33.0" prefWidth="344.0" promptText="Vaccine Center" visibleRowCount="4" />
                                  </children>
                               </VBox>
                            </children>
