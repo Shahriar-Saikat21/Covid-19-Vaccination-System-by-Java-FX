@@ -53,33 +53,45 @@ public class AdminLogInFXMLController implements Initializable{
     String otpSentByMail = "";
     
     @FXML
-    private void adminLogInOTPAction(ActionEvent event) throws Exception{                
-        Connection DBConnection = DataBaseConnection.connectDB();
+    private void adminLogInOTPAction(ActionEvent event) {  
+        try {
+            Connection DBConnection = DataBaseConnection.connectDB();
         
-        String userName = userNameTF.getText();
-        String userPassword = passwordTF.getText();
-        
-        String query = "select mail from adminUsers where userName = BINARY ? and password = BINARY ?";
-        PreparedStatement statement = DBConnection.prepareStatement(query);
-        statement.setString(1, userName);
-        statement.setString(2, userPassword);
-        ResultSet result = statement.executeQuery();
-        
-        if(result.next()==false){
+            String userName = userNameTF.getText();
+            String userPassword = passwordTF.getText();
+
+            String query = "select mail from adminUsers where userName = BINARY ? and password = BINARY ?";
+            PreparedStatement statement = DBConnection.prepareStatement(query);
+            statement.setString(1, userName);
+            statement.setString(2, userPassword);
+            ResultSet result = statement.executeQuery();
+
+            if(result.next()==false){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Covid 19 Vaccination System");
+                alert.setHeaderText("Log In Error");
+                alert.setContentText("Invalid Username or Password !!");
+                alert.showAndWait();
+                otpSentByMail = "";
+                userNameTF.setText("");
+                passwordTF.setText("");
+            }else{
+                OTP otpgenerate = new OTP(result.getString("mail"));
+                otpSentByMail = otpgenerate.sendOTP();
+                System.out.println(otpSentByMail);
+            }
+            DBConnection.close();
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Covid 19 Vaccination System");
-            alert.setHeaderText("Log In Error");
-            alert.setContentText("Invalid Username or Password !!");
+            alert.setHeaderText("Error !!!");
+            alert.setContentText("Check Your Network Connection !!");
             alert.showAndWait();
             otpSentByMail = "";
             userNameTF.setText("");
             passwordTF.setText("");
-        }else{
-            OTP otpgenerate = new OTP(result.getString("mail"));
-            otpSentByMail = otpgenerate.sendOTP();
-            System.out.println(otpSentByMail);
         }
-        DBConnection.close();
+        
     }
 
     @FXML

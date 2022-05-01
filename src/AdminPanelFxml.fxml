@@ -48,24 +48,28 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="doseOneComboBox" prefWidth="150.0" promptText="Select Vaccine" />
-            <Label fx:id="dateOneLabel" text="Date">
+            <Label fx:id="doseOneDetailLabel" text="Label">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <DatePicker fx:id="datePickerOne" promptText="Enter Date" />
             <Label fx:id="doseTwoLabel" text="2nd Dose">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="doseTwoComboBox" prefWidth="150.0" promptText="Select Vaccine" />
-            <Label fx:id="dateTwoLabel" text="Date">
+            <Label fx:id="doseTwoDetailLabel" text="Label">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="updateVaxInfoLabel" text="Update Vaccine Information">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
+            <ComboBox fx:id="doseNumberComboBox" prefWidth="150.0" promptText="Dose Number" />
+            <ComboBox fx:id="doseTwoComboBox" prefWidth="150.0" promptText="Select Vaccine" />
             <DatePicker fx:id="datePickerTwo" promptText="Enter Date" />
             <Button fx:id="updateButton" mnemonicParsing="false" onAction="#adminUpdateBtnAction" text="Update" textFill="WHITE">
                <font>
