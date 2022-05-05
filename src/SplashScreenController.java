@@ -26,13 +26,20 @@ public class SplashScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         new SplashScreen().start();
-    } 
-    
+        progressBar.setStyle("-fx-accent: #39b54a");
+        progressLabel.setText("Loading ....");
+    }
+       
     class SplashScreen extends Thread{
         @Override
         public void run(){
             try {
-                Thread.sleep(5000);         
+                double progress = 0.0;
+                while(progress<=1.0){
+                    progressBar.setProgress(progress);
+                    Thread.sleep(2000);
+                    progress+=0.1;
+                }        
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
@@ -56,7 +63,7 @@ public class SplashScreenController implements Initializable {
                         stage.show();
 
                         splashPane.getScene().getWindow().hide(); 
-                        }
+                    }
                 });               
             } catch (Exception e) {
                 System.out.println(e.getMessage());
