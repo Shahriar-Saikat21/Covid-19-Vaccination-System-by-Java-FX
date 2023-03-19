@@ -1,7 +1,7 @@
 # Covid-19-Vaccination-System-by-Java-FX
 Covid 19 Vaccination System by Java FX (University Project)
 
-This is my 4th trimester Advancd OOP Lab Project along with other two team members Kazi Thamidul Hoque and Barsha Saha
+This is my 4th trimester Advancd OOP Lab Project.
 
 # Features
 -> Vaccine Registration <br/>
